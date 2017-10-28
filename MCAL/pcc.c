@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: pcc.c $
- * $Revision: version 1$
+ * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-23  $
+ * $Date: 2017-10-28  $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -31,7 +31,9 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -50,37 +52,28 @@
 
 /* Variables */
 /*============================================================================*/
-S_PCC *PCC = PCC_Address;
+S_PCC *rps_PCC = PCC_Address;
 
 
 /* Private functions prototypes */
 /*============================================================================*/
-void Peripheral_Clock_Enable(T_UBYTE Peripheral_ID);
+void pcc_EnablePeripheralClock(T_UBYTE lub_PeripheralId);
 
 
 /* Inline functions */
 /*============================================================================*/
-void Peripheral_Clock_Enable(T_UBYTE Peripheral_ID){
-  PCC-> PCCn[Peripheral_ID] = 0x40000000;
-}
-
 
 
 /* Private functions */
 /*============================================================================*/
 
-/** Check if action is allowed by overload protection.
- To avoid overheating of the door locking motors and hardware failure
- the software shall limit the number of activations in a short period.
- This function checks if the limitation algorithm allows or not
- a certain activation of the motors.
- \returns TRUE if the activation is allowed, FALSE if not
-*/
-
 
 /* Exported functions */
 /*============================================================================*/
 
+void pcc_EnablePeripheralClock(T_UBYTE lub_PeripheralId){
+  rps_PCC-> raul_PCCn[lub_PeripheralId] = 0x40000000;
+}
 
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

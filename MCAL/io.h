@@ -61,13 +61,13 @@ typedef unsigned int T_ULONG;
 
 /** GPIO - Register Layout Typedef */
 typedef struct {
-  T_ULONG ul_PDOR;                   /**< Port Data Output Register,          offset: 0x00 */
-  T_ULONG ul_PSOR;                   /**< Port Set Output Register,           offset: 0x04 */
-  T_ULONG ul_PCOR;                   /**< Port Clear Output Register,         offset: 0x08 */
-  T_ULONG ul_PTOR;                   /**< Port Toggle Output Register,        offset: 0x0C */
-  T_ULONG ul_PDIR;                   /**< Port Data Input Register,           offset: 0x10 */
-  T_ULONG ul_PDDR;                   /**< Port Data Direction Register,       offset: 0x14 */
-  T_ULONG ul_PIDR;                   /**< Port Input Disable Register,        offset: 0x18 */
+  T_ULONG rul_PDOR;                   /**< Port Data Output Register,          offset: 0x00 */
+  T_ULONG rul_PSOR;                   /**< Port Set Output Register,           offset: 0x04 */
+  T_ULONG rul_PCOR;                   /**< Port Clear Output Register,         offset: 0x08 */
+  T_ULONG rul_PTOR;                   /**< Port Toggle Output Register,        offset: 0x0C */
+  T_ULONG rul_PDIR;                   /**< Port Data Input Register,           offset: 0x10 */
+  T_ULONG rul_PDDR;                   /**< Port Data Direction Register,       offset: 0x14 */
+  T_ULONG rul_PIDR;                   /**< Port Input Disable Register,        offset: 0x18 */
 
 } S_GPIO; 
 

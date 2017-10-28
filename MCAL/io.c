@@ -54,22 +54,22 @@ typedef unsigned char T_UBYTE;
 /* Variables */
 /*============================================================================*/
 /** Pointers to S_GPIO */
-S_GPIO *rp_PTA = PTA_Address;
-S_GPIO *rp_PTB = PTB_Address;
-S_GPIO *rp_PTC = PTC_Address;
-S_GPIO *rp_PTD = PTD_Address;
-S_GPIO *rp_PTE = PTE_Address;
+S_GPIO *rps_PTA = PTA_Address;
+S_GPIO *rps_PTB = PTB_Address;
+S_GPIO *rps_PTC = PTC_Address;
+S_GPIO *rps_PTD = PTD_Address;
+S_GPIO *rps_PTE = PTE_Address;
 
 
 /* Private functions prototypes */
 /*============================================================================*/
-void IoInputPin(S_GPIO *lp_Port, T_ULONG l_Pin);
-void IoutputPin(S_GPIO *lp_Port, T_ULONG l_Pin);
-void IoTogglePin(S_GPIO *lp_Port, T_ULONG l_Pin);
-void IoOutputSet(S_GPIO *lp_Port, T_ULONG l_Pin);
-void IoOutputClear(S_GPIO *lp_Port, T_ULONG l_Pin);
-T_UBYTE IoGetPinData(S_GPIO *lp_Port, T_UBYTE l_Pin);
-void IoPinMode(S_GPIO *lp_Port, T_UBYTE l_Pin, T_ULONG l_Mode);
+void io_InputPin(S_GPIO *lps_Port, T_ULONG lul_Pin);
+void io_OutputPin(S_GPIO *lps_Port, T_ULONG lul_Pin);
+void io_TogglePin(S_GPIO *lps_Port, T_ULONG lul_Pin);
+void io_OutputSet(S_GPIO *lps_Port, T_ULONG lul_Pin);
+void io_OutputClear(S_GPIO *lps_Port, T_ULONG lul_Pin);
+T_UBYTE io_GetPinData(S_GPIO *lps_Port, T_UBYTE lul_Pin);
+void io_PinMode(S_GPIO *lps_Port, T_UBYTE lub_Pin, T_ULONG lul_Mode);
 
 
 /* Inline functions */
@@ -82,28 +82,28 @@ void IoPinMode(S_GPIO *lp_Port, T_UBYTE l_Pin, T_ULONG l_Mode);
 
 /* Exported functions */
 /*============================================================================*/
-void IoInputPin(S_GPIO *lp_Port, T_ULONG l_Pin){
-  lp_Port->ul_PDDR &= ~(l_Pin);
+void io_InputPin(S_GPIO *lps_Port, T_ULONG lul_Pin){
+  lps_Port->rul_PDDR &= ~(lul_Pin);
 }
 
-void IoOutputPin(S_GPIO *lp_Port, T_ULONG l_Pin){
-  lp_Port->ul_PDDR |= l_Pin;
+void io_OutputPin(S_GPIO *lps_Port, T_ULONG lul_Pin){
+  lps_Port->rul_PDDR |= lul_Pin;
 }
 
-void IoTogglePin(S_GPIO *lp_Port, T_ULONG l_Pin){
-  lp_Port->ul_PTOR |= l_Pin;
+void io_TogglePin(S_GPIO *lps_Port, T_ULONG lul_Pin){
+  lps_Port->rul_PTOR |= lul_Pin;
 }
 
-void IoOutputSet(S_GPIO *lp_Port, T_ULONG l_Pin){
-  lp_Port->ul_PSOR |= l_Pin;
+void io_OutputSet(S_GPIO *lps_Port, T_ULONG lul_Pin){
+  lps_Port->rul_PSOR |= lul_Pin;
 }
 
-void IoOutputClear(S_GPIO *lp_Port, T_ULONG l_Pin){
-  lp_Port->ul_PCOR |= l_Pin;
+void io_OutputClear(S_GPIO *lps_Port, T_ULONG lul_Pin){
+  lps_Port->rul_PCOR |= lul_Pin;
 }
 
-T_UBYTE IoGetPinData(S_GPIO *lp_Port, T_UBYTE l_Pin){
-  if((lp_Port->ul_PDIR) & (1<<l_Pin))
+T_UBYTE io_GetPinData(S_GPIO *lps_Port, T_UBYTE lul_Pin){
+  if((lps_Port->ul_PDIR) & (1<<lul_Pin))
     return 1;
   else 
     return 0;

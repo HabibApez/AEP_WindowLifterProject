@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: lpti.h $
- * $Revision: version 1$
+ * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-25 $
+ * $Date: 2017-10-28 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -34,7 +34,11 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/*/*  Author             |        Version     | FILE VERSION (AND INSTANCE)     */
+/*----------------------------------------------------------------------------*/
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -62,20 +66,20 @@ typedef unsigned char T_UBYTE;
 
 /** LPIT - Register Layout Typedef */
 typedef struct {
-  T_ULONG VERID;                             /**< Version ID Register, offset: 0x0 */
-  T_ULONG PARAM;                             /**< Parameter Register, offset: 0x4 */
-  T_ULONG MCR;                               /**< Module Control Register, offset: 0x8 */
-  T_ULONG MSR;                               /**< Module Status Register, offset: 0xC */
-  T_ULONG MIER;                              /**< Module Interrupt Enable Register, offset: 0x10 */
-  T_ULONG SETTEN;                            /**< Set Timer Enable Register, offset: 0x14 */
-  T_ULONG CLRTEN;                            /**< Clear Timer Enable Register, offset: 0x18 */
-  T_UBYTE RESERVED_0[4];
+  T_ULONG rul_VERID;                             /**< Version ID Register, offset: 0x0 */
+  T_ULONG rul_PARAM;                             /**< Parameter Register, offset: 0x4 */
+  T_ULONG rul_MCR;                               /**< Module Control Register, offset: 0x8 */
+  T_ULONG rul_MSR;                               /**< Module Status Register, offset: 0xC */
+  T_ULONG rul_MIER;                              /**< Module Interrupt Enable Register, offset: 0x10 */
+  T_ULONG rul_SETTEN;                            /**< Set Timer Enable Register, offset: 0x14 */
+  T_ULONG rul_CLRTEN;                            /**< Clear Timer Enable Register, offset: 0x18 */
+  T_UBYTE rub_RESERVED_0[4];
   struct {                                         /* offset: 0x20, array step: 0x10 */
-    T_ULONG TVAL;                              /**< Timer Value Register, array offset: 0x20, array step: 0x10 */
-    T_ULONG CVAL;                              /**< Current Timer Value, array offset: 0x24, array step: 0x10 */
-    T_ULONG TCTRL;                             /**< Timer Control Register, array offset: 0x28, array step: 0x10 */
-    T_UBYTE RESERVED_0[4];
-  } TMR[LPIT_TMR_COUNT];
+    T_ULONG rul_TVAL;                              /**< Timer Value Register, array offset: 0x20, array step: 0x10 */
+    T_ULONG rul_CVAL;                              /**< Current Timer Value, array offset: 0x24, array step: 0x10 */
+    T_ULONG rul_TCTRL;                             /**< Timer Control Register, array offset: 0x28, array step: 0x10 */
+    T_UBYTE rul_RESERVED_0[4];
+  } S_TMR[LPIT_TMR_COUNT];
 } S_LPIT; 
 
 /** Peripheral LPIT base pointers*/

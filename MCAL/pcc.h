@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: pcc.h $
- * $Revision: version 1 $
+ * $Revision: version 2 $
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-23  $
+ * $Date: 2017-10-28  $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -31,7 +31,9 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -54,7 +56,6 @@ typedef unsigned char T_UBYTE;
     
     
 /** Peripheral PCC base addresses */
-
 #define PCC_BASE_ADDRESS        0x40065000
 #define PCC_PCCn_COUNT          116
 
@@ -62,7 +63,7 @@ typedef unsigned int T_ULONG;
 
 /** PCC - Register Layout Typedef */
 typedef struct {
-  T_ULONG PCCn[PCC_PCCn_COUNT];                   /**< Port Data Output Register,          offset: 0x00 */
+  T_ULONG raul_PCCn[PCC_PCCn_COUNT];                   /**< Port Data Output Register,          offset: 0x00 */
 } S_PCC; 
 
 /** Peripheral PCC base pointers*/
