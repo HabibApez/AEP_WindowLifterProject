@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-linea de master
-=======
-linea de devs alex
->>>>>>> Branch_Branch_devs
