@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: io.c $
- * $Revision: version 1$
+ * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-23 $
+ * $Date: 2017-10-28 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -29,14 +29,16 @@
 /*============================================================================*/
 /*                    REUSE HISTORY - taken over from                         */
 /*============================================================================*/
-/*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
+/*  Author             |        Version     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
 /*
- * $Log: io.c.c  $
+ * $Log: io.c  $
   ============================================================================*/
 
 /* Includes */
@@ -52,62 +54,60 @@ typedef unsigned char T_UBYTE;
 /* Variables */
 /*============================================================================*/
 /** Pointers to S_GPIO */
-S_GPIO *PTA = PTA_Address;
-S_GPIO *PTB = PTB_Address;
-S_GPIO *PTC = PTC_Address;
-S_GPIO *PTD = PTD_Address;
-S_GPIO *PTE = PTE_Address;
+S_GPIO *rp_PTA = PTA_Address;
+S_GPIO *rp_PTB = PTB_Address;
+S_GPIO *rp_PTC = PTC_Address;
+S_GPIO *rp_PTD = PTD_Address;
+S_GPIO *rp_PTE = PTE_Address;
 
 
 /* Private functions prototypes */
 /*============================================================================*/
-void IO_Input_Pin(S_GPIO *Port, T_ULONG Pin);
-void IO_Output_Pin(S_GPIO *Port, T_ULONG Pin);
-void IO_Toggle_Pin(S_GPIO *Port, T_ULONG Pin);
-void IO_Output_Set(S_GPIO *Port, T_ULONG Pin);
-void IO_Output_Clear(S_GPIO *Port, T_ULONG Pin);
-T_UBYTE IO_Get_Pin_Data(S_GPIO *Port, T_UBYTE Pin);
-void IO_Pin_Mode(S_GPIO *Port, T_UBYTE Pin, T_ULONG Mode);
+void IoInputPin(S_GPIO *lp_Port, T_ULONG l_Pin);
+void IoutputPin(S_GPIO *lp_Port, T_ULONG l_Pin);
+void IoTogglePin(S_GPIO *lp_Port, T_ULONG l_Pin);
+void IoOutputSet(S_GPIO *lp_Port, T_ULONG l_Pin);
+void IoOutputClear(S_GPIO *lp_Port, T_ULONG l_Pin);
+T_UBYTE IoGetPinData(S_GPIO *lp_Port, T_UBYTE l_Pin);
+void IoPinMode(S_GPIO *lp_Port, T_UBYTE l_Pin, T_ULONG l_Mode);
 
 
 /* Inline functions */
 /*============================================================================*/
-void IO_Input_Pin(S_GPIO *Port, T_ULONG Pin){
-  Port->PDDR &= ~(Pin);
-}
-
-void IO_Output_Pin(S_GPIO *Port, T_ULONG Pin){
-  Port->PDDR |= Pin;
-}
-
-void IO_Toggle_Pin(S_GPIO *Port, T_ULONG Pin){
-  Port->PTOR |= Pin;
-}
-
-void IO_Output_Set(S_GPIO *Port, T_ULONG Pin){
-  Port->PSOR |= Pin;
-}
-
-void IO_Output_Clear(S_GPIO *Port, T_ULONG Pin){
-  Port->PCOR |= Pin;
-}
-
-T_UBYTE IO_Get_Pin_Data(S_GPIO *Port, T_UBYTE Pin){
-  if((Port->PDIR) & (1<<Pin))
-    return 1;
-  else 
-    return 0;
-}
 
 
 /* Private functions */
 /*============================================================================*/
 
 
-
 /* Exported functions */
 /*============================================================================*/
+void IoInputPin(S_GPIO *lp_Port, T_ULONG l_Pin){
+  lp_Port->ul_PDDR &= ~(l_Pin);
+}
 
+void IoOutputPin(S_GPIO *lp_Port, T_ULONG l_Pin){
+  lp_Port->ul_PDDR |= l_Pin;
+}
+
+void IoTogglePin(S_GPIO *lp_Port, T_ULONG l_Pin){
+  lp_Port->ul_PTOR |= l_Pin;
+}
+
+void IoOutputSet(S_GPIO *lp_Port, T_ULONG l_Pin){
+  lp_Port->ul_PSOR |= l_Pin;
+}
+
+void IoOutputClear(S_GPIO *lp_Port, T_ULONG l_Pin){
+  lp_Port->ul_PCOR |= l_Pin;
+}
+
+T_UBYTE IoGetPinData(S_GPIO *lp_Port, T_UBYTE l_Pin){
+  if((lp_Port->ul_PDIR) & (1<<l_Pin))
+    return 1;
+  else 
+    return 0;
+}
 
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
