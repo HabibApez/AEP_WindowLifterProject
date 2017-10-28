@@ -93,11 +93,11 @@ void io_TogglePin(S_GPIO *lps_Port, T_ULONG lul_Pin){
   lps_Port->rul_PTOR |= lul_Pin;
 }
 
-void io_OutputSet(S_GPIO *lps_Port, T_ULONG lul_Pin){
+void io_SetOutput(S_GPIO *lps_Port, T_ULONG lul_Pin){
   lps_Port->rul_PSOR |= lul_Pin;
 }
 
-void io_OutputClear(S_GPIO *lps_Port, T_ULONG lul_Pin){
+void io_ClearOutput(S_GPIO *lps_Port, T_ULONG lul_Pin){
   lps_Port->rul_PCOR |= lul_Pin;
 }
 
