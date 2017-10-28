@@ -69,7 +69,6 @@ void io_TogglePin(S_GPIO *lps_Port, T_ULONG lul_Pin);
 void io_OutputSet(S_GPIO *lps_Port, T_ULONG lul_Pin);
 void io_OutputClear(S_GPIO *lps_Port, T_ULONG lul_Pin);
 T_UBYTE io_GetPinData(S_GPIO *lps_Port, T_UBYTE lul_Pin);
-void io_PinMode(S_GPIO *lps_Port, T_UBYTE lub_Pin, T_ULONG lul_Mode);
 
 
 /* Inline functions */

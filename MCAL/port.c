@@ -75,7 +75,7 @@ void port_ConfigurePinMode(S_PORT *lps_Port, T_UBYTE lub_Pin, T_ULONG lul_Mode);
 
 /* Exported functions */
 /*============================================================================*/
-void Configure_Pin_Mode(S_PORT *lps_Port, T_UBYTE lub_Pin, T_ULONG lul_Mode){
+void port_ConfigurePinMode(S_PORT *lps_Port, T_UBYTE lub_Pin, T_ULONG lul_Mode){
   lps_Port->raul_PCR[lub_Pin] = lul_Mode;
 }
 
