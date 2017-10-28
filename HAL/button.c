@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: button.c $
- * $Revision: version 1 $
+ * $Revision: version 2 $
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-23  $
+ * $Date: 2017-10-28  $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -34,7 +34,11 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/*  Author             |        Version     | FILE VERSION (AND INSTANCE)     */
+/*----------------------------------------------------------------------------*/
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -46,107 +50,95 @@
 /*============================================================================*/
 #include "button.h"
 
-
 /* Constants and types  */
 /*============================================================================*/
+
 
 /* Variables */
 /*============================================================================*/
 
 
-
 /* Private functions prototypes */
 /*============================================================================*/
-void Init_Buttons(void);
-T_UBYTE Button_Press(void);
-T_UBYTE Button_Valid_Debounce(void);
-//void Button_Handler(xxx);
+void button_InitButtons(void);
+T_UBYTE button_CheckButtonUp(void);
+T_UBYTE button_CheckButtonDown(void);
+T_UBYTE button_CheckButtonAntipinch(void);
+T_UBYTE button_DebounceButtonUp(void);
+T_UBYTE button_DebounceButtonDown(void);
+T_UBYTE button_DebounceButtonAntipinch(void);
 
 /* Inline functions */
 /*============================================================================*/
-T_UBYTE ButtonUp_Press(){
-  return IO_Get_Pin_Data(PTE, PTE5);
-}
-
-T_UBYTE ButtonDown_Press(){
-  return IO_Get_Pin_Data(PTA, PTA12);
-}
-
-T_UBYTE ButtonAntipinch_Press(){
-  return IO_Get_Pin_Data(PTA, PTA13);
-}
-
 
 /* Private functions */
 /*============================================================================*/
 
-void Init_Buttons(){
-  //Wdt_Disable();
-  Peripheral_Clock_Enable(PCC_PORTA_INDEX);
-  Peripheral_Clock_Enable(PCC_PORTE_INDEX);
-
-  IO_Input_Pin(PTA, 1<<PTA13);          /* Antipinch Button*/
-  Configure_Pin_Mode(PORTA, PTA13, 0x00000110);  /* MUX = GPIO, input filter enabled */
-
-  IO_Input_Pin(PTE, 1<<PTE5);          /* Up Button*/
-  Configure_Pin_Mode(PORTE, PTE5, 0x00000110);  /* MUX = GPIO, input filter enabled */
-
-  IO_Input_Pin(PTA, 1<<PTA12);          /* Down Button*/
-  Configure_Pin_Mode(PORTA, PTA12, 0x00000110);  /* MUX = GPIO, input filter enabled */
-
-}
-
-T_UBYTE ButtonUp_Valid_Debounce(void){
-  //T_ULONG count = 0;
-  
-  if(ButtonUp_Press()){
-    Wait_50ms();
-    //for(count = 0; count<0x0000FFFF; count++);
-    if(ButtonUp_Press())
-      return 1;
-    else
-      return 0;
-  }
-  else
-    return 0;
-}
-
-T_UBYTE ButtonDown_Valid_Debounce(void){
-  //T_ULONG count = 0;
-  
-  if(ButtonDown_Press()){
-    Wait_50ms();
-    //for(count = 0; count<0x0000FFFF; count++);
-    if(ButtonDown_Press())
-      return 1;
-    else
-      return 0;
-  }
-  else
-    return 0;
-}
-
-
-T_UBYTE ButtonAntipinch_Valid_Debounce(void){
-  //T_ULONG count = 0;
-  
-  if(ButtonAntipinch_Press()){
-    Wait_50ms();
-    //for(count = 0; count<0x0000FFFF; count++);
-    if(ButtonAntipinch_Press())
-      return 1;
-    else
-      return 0;
-  }
-  else
-    return 0;
-}
-
-
-
 /* Exported functions */
 /*============================================================================*/
 
+void button_InitButtons(void){
+  pcc_EnablePeripheralClock(PCC_PORTA_INDEX);
+  pcc_EnablePeripheralClock(PCC_PORTE_INDEX);
 
+  io_InputPin(rps_PTA, 1<<PTA13);          /* Antipinch Button*/
+  port_ConfigurePinMode(rps_PORTA, PTA13, 0x00000110);  /* MUX = GPIO, input filter enabled */
+
+  io_InputPin(rps_PTE, 1<<PTE5);          /* Up Button*/
+  port_ConfigurePinMode(rps_PORTE, PTE5, 0x00000110);  /* MUX = GPIO, input filter enabled */
+
+  io_InputPin(rps_PTA, 1<<PTA12);          /* Down Button*/
+  port_ConfigurePinMode(rps_PORTA, PTA12, 0x00000110);  /* MUX = GPIO, input filter enabled */
+
+}
+
+T_UBYTE button_CheckButtonUp(void){
+  return io_GetPinData(rps_PTE, PTE5);
+}
+
+T_UBYTE button_CheckButtonDown(void){
+  return io_GetPinData(rps_PTA, PTA12);
+}
+
+T_UBYTE button_CheckButtonAntipinch(void){
+  return io_GetPinData(rps_PTA, PTA13);
+}
+
+T_UBYTE button_DebounceButtonUp(void){  
+  if(button_CheckButtonUp()){
+    timer_Wait50ms();
+    if(button_CheckButtonUp())
+      return 1;
+    else
+      return 0;
+  }
+  else
+    return 0;
+}
+
+T_UBYTE button_DebounceButtonDown(void){
+   if(button_CheckButtonDown()){
+    timer_Wait50ms();
+    if(button_CheckButtonDown())
+      return 1;
+    else
+      return 0;
+  }
+  else
+    return 0;
+}
+
+
+T_UBYTE button_DebounceButtonAntipinch(void){
+   if(button_CheckButtonAntipinch()){
+    timer_Wait50ms();
+    if(button_CheckButtonAntipinch())
+      return 1;
+    else
+      return 0;
+  }
+  else
+    return 0;
+}
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: timer.c $
- * $Revision: version 1$
+ * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-23 $
+ * $Date: 2017-10-28 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -34,7 +34,9 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -51,62 +53,61 @@
 /*============================================================================*/
 
 
-
 /* Variables */
 /*============================================================================*/
 
 
-
 /* Private functions prototypes */
 /*============================================================================*/
-
-
+void timer_InitTimer(void);
+void timer_Wait50ms(void);
+void timer_Wait400ms(void);
+void timer_Wait450ms(void);
+void timer_Wait5s(void);
 
 /* Inline functions */
 /*============================================================================*/
 
 
-
-
 /* Private functions */
 /*============================================================================*/
-void Init_Timer(void){
-  LPITO_Enable();
-}
-
-void Wait_50ms(void){
-  LPITO_Ch0_Charge(2000000);
-  LPIT0_Ch0_Enable();
-  while(0 == LPIT0_Ch0_Status_Flag());
-  LPIT0_Ch0_Clear_Flag();
-  LPIT0_Ch0_Disable();
-}
-
-void Wait_400ms(void){
-  LPITO_Ch0_Charge(16000000);
-  LPIT0_Ch0_Enable();
-  while(0 == LPIT0_Ch0_Status_Flag());
-  LPIT0_Ch0_Clear_Flag();
-  LPIT0_Ch0_Disable();
-}
-
-void Wait_450ms(void){
-  Wait_400ms();
-  Wait_50ms();
-}
-
-void Wait_5s(void){
-  LPITO_Ch0_Charge(200000000);
-  LPIT0_Ch0_Enable();
-  while(0 == LPIT0_Ch0_Status_Flag());
-  LPIT0_Ch0_Clear_Flag();
-  LPIT0_Ch0_Disable();
-}
 
 
 /* Exported functions */
 /*============================================================================*/
 
 
+void timer_InitTimer(void){
+  lpit_EnableLPITO();
+}
+
+void timer_Wait50ms(void){
+  lpit_ChargeLPITOCh0(2000000);
+  lpit_EnableLPIT0Ch0();
+  while(0 == lpit_ChecklFlagLPIT0Ch0());
+  lpit_ClearFlagLPIT0Ch0();
+  lpit_DisableLPIT0Ch0();
+}
+
+void timer_Wait400ms(void){
+  lpit_ChargeLPITOCh0(16000000);
+  lpit_EnableLPIT0Ch0();
+  while(0 == lpit_ChecklFlagLPIT0Ch0());
+  lpit_ClearFlagLPIT0Ch0();
+  lpit_DisableLPIT0Ch0();
+}
+
+void timer_Wait450ms(void){
+  timer_Wait400ms();
+  timer_Wait50ms();
+}
+
+void timer_Wait5s(void){
+  lpit_ChargeLPITOCh0(200000000);
+  lpit_EnableLPIT0Ch0();
+  while(0 == lpit_ChecklFlagLPIT0Ch0());
+  lpit_ClearFlagLPIT0Ch0();
+  lpit_DisableLPIT0Ch0();
+}
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
