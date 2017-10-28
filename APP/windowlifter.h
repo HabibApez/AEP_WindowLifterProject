@@ -4,7 +4,7 @@
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*/
 /*!
- * $Source: windowlifter.x $
+ * $Source: windowlifter.h $
  * $Revision: version 2 $
  * $Author: Habib Apez & Estefania López $
  * $Date: 2017-10-28 $

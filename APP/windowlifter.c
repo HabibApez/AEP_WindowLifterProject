@@ -53,124 +53,76 @@
     
 /* Variables */
 /*============================================================================*/
-T_UBYTE Up_Flag, Down_Flag, level = 0;
-
-
+T_UBYTE lub_UpFlag, lub_DownFlag, lub_Level = 0;
 
 /* Private functions prototypes */
 /*============================================================================*/
-void Antipinch(void);
-
+void windowlifter_UpNormal(void);
+void windowlifter_DownNormal(void);
+void windowlifter_OneTouchUp(void);
+void windowlifter_OneTouchDown(void);
+void windowlifter_Antipinch(void);
 
 /* Inline functions */
 /*============================================================================*/
 
-/*
-void Wait_50ms(){
-  T_ULONG x;
-  for(x = 0; x < 0x0000FFFF; x++);       
-}
-
-void Wait_400ms(){
-  T_ULONG x;
-  for(x = 0; x < 0x000FFFFF; x++);       
-}
-
-void Wait_5s(){
-  T_ULONG x;
-  for(x = 0; x < 0x01FFFFFF; x++);       
-}
-
-void Wait_450ms(){
-  Wait_400ms();
-  Wait_50ms();
-}
-
-
-void Turn_On_UpLED(void){
-  PTE-> PSOR |= 1<<PTE4;
-}
-
-void Turn_On_DownLED(void){
-  PTD-> PSOR |= 1<<PTD1;
-}
-
-void Turn_On_AntipinchLED(void){
-  PTC-> PSOR |= 1<<PTC17;
-}
-
-void Turn_Off_UpLED(void){
-  PTE-> PCOR |= 1<<PTE4;
-}
-
-void Turn_Off_DownLED(void){
-  PTD-> PCOR |= 1<<PTD1;
-}
-
-void Turn_Off_AntipinchLED(void){
-  PTC-> PCOR |= 1<<PTC17;
-}
-*/
-
-
 /* Private functions */
 /*============================================================================*/
 
-void UpNormal(void){
-  if(ButtonAntipinch_Valid_Debounce()){
-    Antipinch();
+void windowlifter_UpNormal(void){
+  if(button_DebounceButtonAntipinch()){
+    windowlifter_Antipinch();
   }
   else {
-    if(level<TOP){
-      Turn_On_UpLED();
-      level++;
-      Wait_400ms();
-      Set_Level_Bar(level);
-      Turn_Off_UpLED();
+    if(lub_Level<TOP){
+      leds_TurnOnUpLED();
+      lub_Level++;
+      timer_Wait400ms();
+      segmentbar_SetLevelBar(lub_level);
+      leds_TurnOffUpLED();
     }
   }
 }
 
 
-void DownNormal(void){
-  if(level>BOTTON){
-    Turn_On_DownLED();
-    level--;
-    Wait_400ms();
-    Set_Level_Bar(level);
-    Turn_Off_DownLED();
+void windowlifter_DownNormal(void){
+  if(lub_Level>BOTTON){
+    leds_TurnOnDownLED();
+    lub_Level--;
+    timer_Wait400ms();
+    segmentbar_SetLevelBar(lub_level);
+    leds_TurnOffDownLED();
   }
 }
 
-void OneTouchUp(void){
-  while(level<TOP & Up_Flag){
-    if(ButtonDown_Valid_Debounce())
-      Up_Flag = 0;
-    if(Up_Flag)
-      UpNormal(); //Verify if it comes from a onetouch
+void windowlifter_OneTouchUp(void){
+  while(lub_level<TOP & lub_UpFlag){
+    if(button_DebounceButtonDown())
+      lub_UpFlag = 0;
+    if(lub_UpFlag)
+      windowlifter_UpNormal(); //Verify if it comes from a onetouch
   }
 }
 
 
-void OneTouchDown(void){
+void windowlifter_OneTouchDown(void){
 
-  while(level>BOTTON & Down_Flag){ 
-    if(ButtonUp_Valid_Debounce())
-      Down_Flag = 0;
-    if(Down_Flag)
-    DownNormal();       
+  while(lub_Level>BOTTON & lub_DownFlag){ 
+    if(button_DebounceButtonUp())
+      lub_DownFlag = 0;
+    if(lub_DownFlag)
+    windowlifter_DownNormal();       
   }
 }
 
-void Antipinch(void){
-  Turn_Off_UpLED();
-  Up_Flag = 0;
-  Down_Flag = 1;
-  Turn_On_AntipinchLED();          
-  OneTouchDown();
-  Wait_5s();
-  Turn_Off_AntipinchLED();
-  
+void windowlifter_Antipinch(void){
+  leds_TurnOffUpLED();
+  lub_UpFlag = 0;
+  lub_DownFlag = 1;
+  leds_TurnOnAntipinchLED();          
+  windowlifter_OneTouchDown();
+  timer_Wait5s();
+  leds_TurnOffAntipinchLED();  
 }
 
 /** Check if action is allowed by overload protection.
@@ -182,83 +134,58 @@ void Antipinch(void){
 /*============================================================================*/
 
 
-int main(void)              
+void main(void)              
 {
-    Init_Clock();
-    Init_Buttons();
-    Init_Leds();
-    Init_Bar();
-    Init_Timer();
+    clock_InitClock();
+    button_InitButtons();
+    leds_InitLeds();
+    segmentbar_InitBar();
+    timer_InitTimer();
     
- /*
-    for(;;) {
-      
-      if(ButtonUp_Valid_Debounce()){
-        Turn_On_UpLED();
-        Wait_400ms();
-        Turn_Off_UpLED();
-      }
-      if(ButtonDown_Valid_Debounce()){
-        Turn_On_DownLED();
-        Wait_400ms();
-        Turn_Off_DownLED();
-      }
-      if(ButtonAntipinch_Valid_Debounce()){
-        Turn_On_AntipinchLED();
-        Wait_400ms();
-        Turn_Off_AntipinchLED();
-      }
-    }
-      
-*/
-        
     for(;;){
         
       start:
-        if(ButtonUp_Valid_Debounce()){
-          Up_Flag = 1;
-          Wait_450ms();
-          if(ButtonUp_Press()){
+        if(button_DebounceButtonUp()){
+          lub_UpFlag = 1;
+          timer_Wait450ms();
+          if(button_CheckButtonUp()){
             Up_normal:
-              UpNormal();
-              if(ButtonUp_Press())
+              windowlifter_UpNormal();
+              if(button_CheckButtonUp())
                 goto Up_normal;
               else
                 goto start;
           }
           else{
-            OneTouchUp();
-            if(Up_Flag==0)
-              Wait_400ms();
+            windowlifter_OneTouchUp();
+            if(lub_UpFlag==0)
+              timer_Wait400ms();
             goto start;
           }
-          Up_Flag = 0;
+          lub_UpFlag = 0;
         }
         else {
           if(ButtonDown_Valid_Debounce()){
-            Down_Flag = 1;
-            Wait_450ms();
-            if(ButtonDown_Press()){
+            lub_DownFlag = 1;
+            timer_Wait450ms();
+            if(button_CheckButtonDown()){
               Down_normal:
-                DownNormal();
-                if(ButtonDown_Press())
+                windowlifter_DownNormal();
+                if(button_CheckButtonDown())
                   goto Down_normal;
                 else
                   goto start;
               }
               else {
-                OneTouchDown();
-                if(Down_Flag==0)
-                  Wait_400ms();
+                windowlifter_OneTouchDown();
+                if(lub_DownFlag==0)
+                  timer_Wait400ms();
                 goto start;
               }
-            Down_Flag = 0;
+            lub_DownFlag = 0;
             }
             else 
               goto start;
-            }
-          }
-        
-  return 0;
+     }
 }
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
