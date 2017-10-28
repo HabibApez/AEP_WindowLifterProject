@@ -4,18 +4,15 @@
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*/
 /*!
- * $Source: filename.x $
- * $Revision: version 1 $
+ * $Source: windowlifter.x $
+ * $Revision: version 2 $
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-24 $
+ * $Date: 2017-10-28 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
 /** \file
-    short description in one sentence end with dot.
-    detailed
-    multiline
-    description of the file
+    Header of windowlifter.c
 */
 /*============================================================================*/
 /* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2014                                  */
@@ -32,9 +29,11 @@
 /*============================================================================*/
 /*                    REUSE HISTORY - taken over from                         */
 /*============================================================================*/
-/*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
+/*  Author             |        Version     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
