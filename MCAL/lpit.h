@@ -73,12 +73,12 @@ typedef struct {
   T_ULONG rul_MIER;                              /**< Module Interrupt Enable Register, offset: 0x10 */
   T_ULONG rul_SETTEN;                            /**< Set Timer Enable Register, offset: 0x14 */
   T_ULONG rul_CLRTEN;                            /**< Clear Timer Enable Register, offset: 0x18 */
-  T_UBYTE rub_RESERVED_0[4];
+  T_UBYTE raub_RESERVED_0[4];
   struct {                                         /* offset: 0x20, array step: 0x10 */
     T_ULONG rul_TVAL;                              /**< Timer Value Register, array offset: 0x20, array step: 0x10 */
     T_ULONG rul_CVAL;                              /**< Current Timer Value, array offset: 0x24, array step: 0x10 */
     T_ULONG rul_TCTRL;                             /**< Timer Control Register, array offset: 0x28, array step: 0x10 */
-    T_UBYTE rul_RESERVED_0[4];
+    T_UBYTE raul_RESERVED_0[4];
   } S_TMR[LPIT_TMR_COUNT];
 } S_LPIT; 
 

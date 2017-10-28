@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: wdt.h $
- * $Revision: version 1$
+ * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-24 $
+ * $Date: 2017-10-28 $
 */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -34,7 +34,9 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -59,10 +61,10 @@ typedef unsigned char T_UBYTE;
 
 /** WDOG - Register Layout Typedef */
 typedef struct {
-  T_ULONG CS;                                /**< Watchdog Control and Status Register, offset: 0x0 */
-  T_ULONG CNT;                               /**< Watchdog Counter Register, offset: 0x4 */
-  T_ULONG TOVAL;                             /**< Watchdog Timeout Value Register, offset: 0x8 */
-  T_ULONG WIN;                               /**< Watchdog Window Register, offset: 0xC */
+  T_ULONG rul_CS;                                /**< Watchdog Control and Status Register, offset: 0x0 */
+  T_ULONG rul_CNT;                               /**< Watchdog Counter Register, offset: 0x4 */
+  T_ULONG rul_TOVAL;                             /**< Watchdog Timeout Value Register, offset: 0x8 */
+  T_ULONG rul_WIN;                               /**< Watchdog Window Register, offset: 0xC */
 } S_WDT;
 
 /** Peripheral WDT base pointers*/

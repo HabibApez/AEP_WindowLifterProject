@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: wdt.c $
- * $Revision: version 1$
+ * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-24 $
+ * $Date: 2017-10-28 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -34,7 +34,9 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -51,42 +53,29 @@
 /*============================================================================*/
 
 
-
 /* Variables */
 /*============================================================================*/
-S_WDT *WDT = WDT_Address;
+S_WDT *rps_WDT = WDT_Address;
 
 
 /* Private functions prototypes */
 /*============================================================================*/
-
-
+void wdt_DisableWdt(void);
 
 /* Inline functions */
 /*============================================================================*/
-void Wdt_Disable(void){
-  WDT->CNT = 0xD928C520; /*Unlock watchdog*/
-  WDT->TOVAL = 0x0000FFFF; /*Maximum timeout value*/
-  WDT->CS = 0x00002100; /*Disable watchdog*/
-}
-
 
 
 /* Private functions */
 /*============================================================================*/
 
-/** Check if action is allowed by overload protection.
- To avoid overheating of the door locking motors and hardware failure
- the software shall limit the number of activations in a short period.
- This function checks if the limitation algorithm allows or not
- a certain activation of the motors.
- \returns TRUE if the activation is allowed, FALSE if not
-*/
-
 
 /* Exported functions */
 /*============================================================================*/
-
-
+void wdt_DisableWdt(void){
+  rps_WDT->rul_CNT = 0xD928C520; /*Unlock watchdog*/
+  rps_WDT->rul_TOVAL = 0x0000FFFF; /*Maximum timeout value*/
+  rps_WDT->rul_CS = 0x00002100; /*Disable watchdog*/
+}
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
