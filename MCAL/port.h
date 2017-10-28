@@ -50,8 +50,6 @@
 
 /* Constants and types */
 /*============================================================================*/
-typedef unsigned char T_UBYTE;
-typedef unsigned int T_ULONG; 
 
 /** Peripheral PORTx base addresses */
 #define PORTA_BASE_ADDRESS      0X40049000
@@ -60,6 +58,10 @@ typedef unsigned int T_ULONG;
 #define PORTD_BASE_ADDRESS      0X4004C000
 #define PORTE_BASE_ADDRESS      0X4004D000
 
+//typedef unsigned char T_UBYTE;
+//typedef unsigned int T_ULONG;    
+    
+    
 /** PORT - Size of Registers Arrays */
 #define PORT_PCR_COUNT  32
 

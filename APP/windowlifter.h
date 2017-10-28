@@ -46,11 +46,11 @@
 /* Includes */
 /*============================================================================*/
 
-#include "C:\Documents_Continental\AEP_2017\Project 1\LED_BAR_LP\HAL\clock.c"
-#include "C:\Documents_Continental\AEP_2017\Project 1\LED_BAR_LP\HAL\timer.c"
-#include "C:\Documents_Continental\AEP_2017\Project 1\LED_BAR_LP\HAL\button.c"
-#include "C:\Documents_Continental\AEP_2017\Project 1\LED_BAR_LP\HAL\segmentbar.c"
-#include "C:\Documents_Continental\AEP_2017\Project 1\LED_BAR_LP\HAL\leds.c"
+#include "D:\RepoGitSVN\AEP_WindowLifterProject\HAL\clock.c"
+#include "D:\RepoGitSVN\AEP_WindowLifterProject\HAL\timer.c"
+#include "D:\RepoGitSVN\AEP_WindowLifterProject\HAL\button.c"
+#include "D:\RepoGitSVN\AEP_WindowLifterProject\HAL\segmentbar.c"
+#include "D:\RepoGitSVN\AEP_WindowLifterProject\HAL\leds.c"
 
 /* Constants and types */
 /*============================================================================*/

@@ -74,10 +74,8 @@ void clock_InitClock(void);
 /*============================================================================*/
 void clock_InitClock(void)
 {
-	scg_ConfigSOSC8mhz(void);
-	scg_ConfigSPLL160mhz(void);
-	scg_ConfigRunMode(void);
+	scg_ConfigSOSC8mhz();
+	scg_ConfigSPLL160mhz();
+	scg_ConfigRunMode();
 }
-
-
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

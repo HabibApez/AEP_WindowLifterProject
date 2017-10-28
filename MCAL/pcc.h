@@ -51,15 +51,12 @@
 /* Constants and types */
 /*============================================================================*/
 
-    
-typedef unsigned char T_UBYTE; 
-    
-    
 /** Peripheral PCC base addresses */
 #define PCC_BASE_ADDRESS        0x40065000
 #define PCC_PCCn_COUNT          116
 
-typedef unsigned int T_ULONG; 
+//typedef unsigned int T_ULONG;     
+//typedef unsigned char T_UBYTE; 
 
 /** PCC - Register Layout Typedef */
 typedef struct {

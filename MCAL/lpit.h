@@ -34,7 +34,7 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*/*  Author             |        Version     | FILE VERSION (AND INSTANCE)     */
+/*  Author             |        Version     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
 /* Habib Apez          |          1         |   Initial version               */
 /* Habib Apez          |          2         |   Naming conventions            */
@@ -50,19 +50,18 @@
 
 /* Includes */
 /*============================================================================*/
-#include "C:\Documents_Continental\AEP_2017\Project 1\LED_BAR_LP\MCAL\pcc.c"
+#include "D:\RepoGitSVN\AEP_WindowLifterProject\MCAL\pcc.c"
 
 /* Constants and types */
 /*============================================================================*/
-
 /** Peripheral LPITx base addresses */
 #define LPIT_BASE_ADDRESS      0X40037000
 
 /** LPIT - Size of Registers Arrays */
 #define LPIT_TMR_COUNT          4
 
-typedef unsigned int T_ULONG; 
-typedef unsigned char T_UBYTE; 
+//typedef unsigned int T_ULONG; 
+//typedef unsigned char T_UBYTE; 
 
 /** LPIT - Register Layout Typedef */
 typedef struct {

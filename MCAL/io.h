@@ -57,7 +57,7 @@
 #define GPIOD_BASE_ADDRESS      0X400FF0C0
 #define GPIOE_BASE_ADDRESS      0X400FF100
 
-typedef unsigned int T_ULONG; 
+//typedef unsigned int T_ULONG; 
 
 /** GPIO - Register Layout Typedef */
 typedef struct {
