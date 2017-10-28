@@ -78,7 +78,7 @@ void windowlifter_UpNormal(void){
       leds_TurnOnUpLED();
       lub_Level++;
       timer_Wait400ms();
-      segmentbar_SetLevelBar(lub_level);
+      segmentbar_SetLevelBar(lub_Level);
       leds_TurnOffUpLED();
     }
   }
@@ -90,13 +90,13 @@ void windowlifter_DownNormal(void){
     leds_TurnOnDownLED();
     lub_Level--;
     timer_Wait400ms();
-    segmentbar_SetLevelBar(lub_level);
+    segmentbar_SetLevelBar(lub_Level);
     leds_TurnOffDownLED();
   }
 }
 
 void windowlifter_OneTouchUp(void){
-  while(lub_level<TOP & lub_UpFlag){
+  while(lub_Level<TOP & lub_UpFlag){
     if(button_DebounceButtonDown())
       lub_UpFlag = 0;
     if(lub_UpFlag)
@@ -151,41 +151,50 @@ void main(void)
           if(button_CheckButtonUp()){
             Up_normal:
               windowlifter_UpNormal();
-              if(button_CheckButtonUp())
+              if(button_CheckButtonUp()){
+                lub_UpFlag = 0;
                 goto Up_normal;
-              else
+              }
+              else {
+                lub_UpFlag = 0;
                 goto start;
+              }
           }
           else{
             windowlifter_OneTouchUp();
             if(lub_UpFlag==0)
               timer_Wait400ms();
+            lub_UpFlag = 0;
             goto start;
           }
-          lub_UpFlag = 0;
         }
         else {
-          if(ButtonDown_Valid_Debounce()){
+          if(button_DebounceButtonDown()){
             lub_DownFlag = 1;
             timer_Wait450ms();
             if(button_CheckButtonDown()){
               Down_normal:
                 windowlifter_DownNormal();
-                if(button_CheckButtonDown())
+                if(button_CheckButtonDown()){
+                  lub_DownFlag = 0;
                   goto Down_normal;
-                else
+                }
+                else {
+                  lub_DownFlag = 0;
                   goto start;
+                }
               }
               else {
                 windowlifter_OneTouchDown();
                 if(lub_DownFlag==0)
                   timer_Wait400ms();
+                lub_DownFlag = 0;
                 goto start;
               }
-            lub_DownFlag = 0;
             }
             else 
               goto start;
-     }
+        }
+    }
 }
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

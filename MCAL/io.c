@@ -48,7 +48,7 @@
 
 /* Constants and types  */
 /*============================================================================*/
-typedef unsigned char T_UBYTE;
+//typedef unsigned char T_UBYTE;
 
 
 /* Variables */
@@ -102,7 +102,7 @@ void io_ClearOutput(S_GPIO *lps_Port, T_ULONG lul_Pin){
 }
 
 T_UBYTE io_GetPinData(S_GPIO *lps_Port, T_UBYTE lul_Pin){
-  if((lps_Port->ul_PDIR) & (1<<lul_Pin))
+  if((lps_Port->rul_PDIR) & (1<<lul_Pin))
     return 1;
   else 
     return 0;

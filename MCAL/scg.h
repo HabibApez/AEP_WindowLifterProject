@@ -48,17 +48,17 @@
 
 /* Includes */
 /*============================================================================*/
-#include "C:\Documents_Continental\AEP_2017\Project 1\LED_BAR_LP\MCAL\wdt.c"
-
-typedef unsigned int T_ULONG; 
-typedef unsigned char T_UBYTE; 
+#include "D:\RepoGitSVN\AEP_WindowLifterProject\MCAL\wdt.c"
 
 /* Constants and types */
 /*============================================================================*/
 
 /** Peripheral SCG base addresses */
 #define SCG_BASE_ADDRESS 0x40064000
-
+    
+//typedef unsigned int T_ULONG; 
+//typedef unsigned char T_UBYTE; 
+    
 /** SCG - Register Layout Typedef */
 typedef struct {
   T_ULONG rul_VERID;                             /**< Version ID Register, offset: 0x0 */

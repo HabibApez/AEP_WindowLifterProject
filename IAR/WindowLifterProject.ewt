@@ -2313,4 +2313,7 @@
             </data>
         </settings>
     </configuration>
+    <file>
+        <name>$PROJ_DIR$\..\APP\windowlifter.c</name>
+    </file>
 </project>

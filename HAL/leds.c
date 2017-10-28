@@ -64,8 +64,8 @@ void leds_TurnOnUpLED(void);
 void leds_TurnOffUpLED(void);
 void leds_TurnOnAntipinchLED(void);
 void leds_TurnOffAntipinchLED(void);
-void leds_TurnOnDownLED(void)
-void leds_TurnOffDownLED(void)
+void leds_TurnOnDownLED(void);
+void leds_TurnOffDownLED(void);
 
 /* Inline functions */
 /*============================================================================*/
@@ -95,27 +95,27 @@ void leds_InitLeds(void){
 }
 
 void leds_TurnOnUpLED(void){
-  IO_Output_Set(rps_PTE, 1<<PTE4);
+  io_SetOutput(rps_PTE, 1<<PTE4);
 }
 
 void leds_TurnOnDownLED(void){
-  IO_Output_Set(rps_PTD, 1<<PTD1);
+  io_SetOutput(rps_PTD, 1<<PTD1);
 }
 
 void leds_TurnOnAntipinchLED(void){
-  IO_Output_Set(rps_PTC, 1<<PTC17);
+  io_SetOutput(rps_PTC, 1<<PTC17);
 }
 
 void leds_TurnOffUpLED(void){
-  IO_Output_Clear(rps_PTE, 1<<PTE4);
+  io_ClearOutput(rps_PTE, 1<<PTE4);
 }
 
 void leds_TurnOffDownLED(void){
-  IO_Output_Clear(rps_PTD, 1<<PTD1);
+  io_ClearOutput(rps_PTD, 1<<PTD1);
 }
 
 void leds_TurnOffAntipinchLED(void){
-  IO_Output_Clear(rps_PTC, 1<<PTC17);
+  io_ClearOutput(rps_PTC, 1<<PTC17);
 }
 
 

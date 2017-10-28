@@ -95,7 +95,7 @@ void scg_ConfigSOSC8mhz(void){
 
 
 void scg_ConfigSPLL160mhz(void){
-	while(ras_SCG->SPLLCSR & 0x800000); /* Ensure SPLLCSR unlocked */
+	while(ras_SCG->rul_SPLLCSR & 0x800000); /* Ensure SPLLCSR unlocked */
 	ras_SCG->rul_SPLLCSR = 0x00000000; 	/* SPLLEN=0: SPLL is disabled (default) */
 	ras_SCG->rul_SPLLDIV = 0x00000302; 	/* SPLLDIV1 divide by 2; SPLLDIV2 divide by 4 */
 	ras_SCG->rul_SPLLCFG = 0x00180000; 	/* PREDIV=0: Divide SOSC_CLK by 0+1=1 */
