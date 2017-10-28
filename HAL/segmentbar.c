@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: 10_segment_bar.c $
- * $Revision: version 1$
+ * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-23  $
+ * $Date: 2017-10-28  $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -16,6 +16,7 @@
     detailed
     multiline
     description of the file
+    Source file of 10 Segment LED Bar HAL module.
 */
 /*============================================================================*/
 /* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2014                                  */
@@ -32,14 +33,16 @@
 /*============================================================================*/
 /*                    REUSE HISTORY - taken over from                         */
 /*============================================================================*/
-/*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
+/*  Author             |        Version     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Estefania López     |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
 /*
- * $Log: 10_segment_bar.c  $
+ * $Log: segmentbar.c  $
   ============================================================================*/
 
 /* Includes */
@@ -55,11 +58,10 @@
 /*============================================================================*/
 
 
-
 /* Private functions prototypes */
 /*============================================================================*/
-void Init_Bar(void);
-void Set_Level_Bar(T_UBYTE level);
+void segmentbar_InitBar(void);
+void segmentbar_SetLevelBar(T_UBYTE lub_level);
 
 /* Inline functions */
 /*============================================================================*/
@@ -70,170 +72,163 @@ void Set_Level_Bar(T_UBYTE level);
 /* Private functions */
 /*============================================================================*/
 
-/** Check if action is allowed by overload protection.
- To avoid overheating of the door locking motors and hardware failure
- the software shall limit the number of activations in a short period.
- This function checks if the limitation algorithm allows or not
- a certain activation of the motors.
- \returns TRUE if the activation is allowed, FALSE if not
-*/
-void Init_Bar(void){
-  Peripheral_Clock_Enable(PCC_PORTA_INDEX);
-  Peripheral_Clock_Enable(PCC_PORTC_INDEX);
-  Peripheral_Clock_Enable(PCC_PORTD_INDEX);
-  Peripheral_Clock_Enable(PCC_PORTE_INDEX);
+void segmentbar_InitBar(void){
+  pcc_EnablePeripheralClock(PCC_rps_PORTA_INDEX);
+  pcc_EnablePeripheralClock(PCC_rps_PORTC_INDEX);
+  pcc_EnablePeripheralClock(PCC_rps_PORTD_INDEX);
+  pcc_EnablePeripheralClock(PCC_rps_PORTE_INDEX);
   
-  IO_Output_Pin(PTA, 1<<PTA8 | 1<<PTA9);
-  IO_Output_Pin(PTC, 1<<PTC8 | 1<<PTC9);
-  IO_Output_Pin(PTD, 1<<PTD2 | 1<<PTD3 | 1<<PTD8 | 1<<PTD9 | 1<<PTD17);
-  IO_Output_Pin(PTE, 1<<PTE12);
+  io_Output_Pin(rps_PTA, 1<<rps_PTA8 | 1<<rps_PTA9);
+  io_Output_Pin(rps_PTC, 1<<rps_PTC8 | 1<<rps_PTC9);
+  io_Output_Pin(rps_PTD, 1<<rps_PTD2 | 1<<rps_PTD3 | 1<<rps_PTD8 | 1<<rps_PTD9 | 1<<rps_PTD17);
+  io_Output_Pin(rps_PTE, 1<<rps_PTE12);
   
-  Configure_Pin_Mode(PORTA, PTA8, 0x00000100);
-  Configure_Pin_Mode(PORTA, PTA9, 0x00000100);
-  Configure_Pin_Mode(PORTC, PTC8, 0x00000100);
-  Configure_Pin_Mode(PORTC, PTC9, 0x00000100);
-  Configure_Pin_Mode(PORTD, PTD2, 0x00000100);
-  Configure_Pin_Mode(PORTD, PTD3, 0x00000100);
-  Configure_Pin_Mode(PORTD, PTD8, 0x00000100);
-  Configure_Pin_Mode(PORTD, PTD9, 0x00000100);
-  Configure_Pin_Mode(PORTD, PTD17, 0x00000100);
-  Configure_Pin_Mode(PORTE, PTE12, 0x00000100);
+  port_ConfigurePinMode(rps_PORTA, rps_PTA8, 0x00000100);
+  port_ConfigurePinMode(rps_PORTA, rps_PTA9, 0x00000100);
+  port_ConfigurePinMode(rps_PORTC, rps_PTC8, 0x00000100);
+  port_ConfigurePinMode(rps_PORTC, rps_PTC9, 0x00000100);
+  port_ConfigurePinMode(rps_PORTD, rps_PTD2, 0x00000100);
+  port_ConfigurePinMode(rps_PORTD, rps_PTD3, 0x00000100);
+  port_ConfigurePinMode(rps_PORTD, rps_PTD8, 0x00000100);
+  port_ConfigurePinMode(rps_PORTD, rps_PTD9, 0x00000100);
+  port_ConfigurePinMode(rps_PORTD, rps_PTD17, 0x00000100);
+  port_ConfigurePinMode(rps_PORTE, rps_PTE12, 0x00000100);
 }
 
-void Set_Level_Bar(T_UBYTE level){
-  switch(level){
+void segmentbar_SetLevelBar(T_UBYTE lub_level){
+  switch(lub_level){
   
   case 0: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Clear(PTA, 1<<PTA8);
-            IO_Output_Clear(PTE, 1<<PTE12);
-            IO_Output_Clear(PTD, 1<<PTD17);
-            IO_Output_Clear(PTC, 1<<PTC9);
-            IO_Output_Clear(PTC, 1<<PTC8);
-            IO_Output_Clear(PTD, 1<<PTD8);
-            IO_Output_Clear(PTD, 1<<PTD9);
-            IO_Output_Clear(PTD, 1<<PTD2);
-            IO_Output_Clear(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA8);
+            io_ClearOutput(rps_PTE, 1<<rps_PTE12);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD17);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC9);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC8);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD8);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD9);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD2);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 1: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Clear(PTA, 1<<PTA8);
-            IO_Output_Clear(PTE, 1<<PTE12);
-            IO_Output_Clear(PTD, 1<<PTD17);
-            IO_Output_Clear(PTC, 1<<PTC9);
-            IO_Output_Clear(PTC, 1<<PTC8);
-            IO_Output_Clear(PTD, 1<<PTD8);
-            IO_Output_Clear(PTD, 1<<PTD9);
-            IO_Output_Clear(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA8);
+            io_ClearOutput(rps_PTE, 1<<rps_PTE12);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD17);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC9);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC8);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD8);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD9);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 2: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Clear(PTA, 1<<PTA8);
-            IO_Output_Clear(PTE, 1<<PTE12);
-            IO_Output_Clear(PTD, 1<<PTD17);
-            IO_Output_Clear(PTC, 1<<PTC9);
-            IO_Output_Clear(PTC, 1<<PTC8);
-            IO_Output_Clear(PTD, 1<<PTD8);
-            IO_Output_Clear(PTD, 1<<PTD9);
-            IO_Output_Set(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA8);
+            io_ClearOutput(rps_PTE, 1<<rps_PTE12);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD17);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC9);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC8);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD8);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD9);
+            io_SetOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 3: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Clear(PTA, 1<<PTA8);
-            IO_Output_Clear(PTE, 1<<PTE12);
-            IO_Output_Clear(PTD, 1<<PTD17);
-            IO_Output_Clear(PTC, 1<<PTC9);
-            IO_Output_Clear(PTC, 1<<PTC8);
-            IO_Output_Clear(PTD, 1<<PTD8);
-            IO_Output_Set(PTD, 1<<PTD9);
-            IO_Output_Set(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA8);
+            io_ClearOutput(rps_PTE, 1<<rps_PTE12);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD17);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC9);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC8);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD9);
+            io_SetOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 4: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Clear(PTA, 1<<PTA8);
-            IO_Output_Clear(PTE, 1<<PTE12);
-            IO_Output_Clear(PTD, 1<<PTD17);
-            IO_Output_Clear(PTC, 1<<PTC9);
-            IO_Output_Clear(PTC, 1<<PTC8);
-            IO_Output_Set(PTD, 1<<PTD8);
-            IO_Output_Set(PTD, 1<<PTD9);
-            IO_Output_Set(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA8);
+            io_ClearOutput(rps_PTE, 1<<rps_PTE12);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD17);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC9);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD9);
+            io_SetOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 5: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Clear(PTA, 1<<PTA8);
-            IO_Output_Clear(PTE, 1<<PTE12);
-            IO_Output_Clear(PTD, 1<<PTD17);
-            IO_Output_Clear(PTC, 1<<PTC9);
-            IO_Output_Set(PTC, 1<<PTC8);
-            IO_Output_Set(PTD, 1<<PTD8);
-            IO_Output_Set(PTD, 1<<PTD9);
-            IO_Output_Set(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA8);
+            io_ClearOutput(rps_PTE, 1<<rps_PTE12);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD17);
+            io_ClearOutput(rps_PTC, 1<<rps_PTC9);
+            io_SetOutput(rps_PTC, 1<<rps_PTC8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD9);
+            io_SetOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 6: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Clear(PTA, 1<<PTA8);
-            IO_Output_Clear(PTE, 1<<PTE12);
-            IO_Output_Clear(PTD, 1<<PTD17);
-            IO_Output_Set(PTC, 1<<PTC9);
-            IO_Output_Set(PTC, 1<<PTC8);
-            IO_Output_Set(PTD, 1<<PTD8);
-            IO_Output_Set(PTD, 1<<PTD9);
-            IO_Output_Set(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA8);
+            io_ClearOutput(rps_PTE, 1<<rps_PTE12);
+            io_ClearOutput(rps_PTD, 1<<rps_PTD17);
+            io_SetOutput(rps_PTC, 1<<rps_PTC9);
+            io_SetOutput(rps_PTC, 1<<rps_PTC8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD9);
+            io_SetOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 7: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Clear(PTA, 1<<PTA8);
-            IO_Output_Clear(PTE, 1<<PTE12);
-            IO_Output_Set(PTD, 1<<PTD17);
-            IO_Output_Set(PTC, 1<<PTC9);
-            IO_Output_Set(PTC, 1<<PTC8);
-            IO_Output_Set(PTD, 1<<PTD8);
-            IO_Output_Set(PTD, 1<<PTD9);
-            IO_Output_Set(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA8);
+            io_ClearOutput(rps_PTE, 1<<rps_PTE12);
+            io_SetOutput(rps_PTD, 1<<rps_PTD17);
+            io_SetOutput(rps_PTC, 1<<rps_PTC9);
+            io_SetOutput(rps_PTC, 1<<rps_PTC8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD9);
+            io_SetOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 8: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Clear(PTA, 1<<PTA8);
-            IO_Output_Set(PTE, 1<<PTE12);
-            IO_Output_Set(PTD, 1<<PTD17);
-            IO_Output_Set(PTC, 1<<PTC9);
-            IO_Output_Set(PTC, 1<<PTC8);
-            IO_Output_Set(PTD, 1<<PTD8);
-            IO_Output_Set(PTD, 1<<PTD9);
-            IO_Output_Set(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA8);
+            io_SetOutput(rps_PTE, 1<<rps_PTE12);
+            io_SetOutput(rps_PTD, 1<<rps_PTD17);
+            io_SetOutput(rps_PTC, 1<<rps_PTC9);
+            io_SetOutput(rps_PTC, 1<<rps_PTC8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD9);
+            io_SetOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 9: 
-            IO_Output_Clear(PTA, 1<<PTA9);
-            IO_Output_Set(PTA, 1<<PTA8);
-            IO_Output_Set(PTE, 1<<PTE12);
-            IO_Output_Set(PTD, 1<<PTD17);
-            IO_Output_Set(PTC, 1<<PTC9);
-            IO_Output_Set(PTC, 1<<PTC8);
-            IO_Output_Set(PTD, 1<<PTD8);
-            IO_Output_Set(PTD, 1<<PTD9);
-            IO_Output_Set(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_ClearOutput(rps_PTA, 1<<rps_PTA9);
+            io_SetOutput(rps_PTA, 1<<rps_PTA8);
+            io_SetOutput(rps_PTE, 1<<rps_PTE12);
+            io_SetOutput(rps_PTD, 1<<rps_PTD17);
+            io_SetOutput(rps_PTC, 1<<rps_PTC9);
+            io_SetOutput(rps_PTC, 1<<rps_PTC8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD9);
+            io_SetOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
   case 10: 
-            IO_Output_Set(PTA, 1<<PTA9);
-            IO_Output_Set(PTA, 1<<PTA8);
-            IO_Output_Set(PTE, 1<<PTE12);
-            IO_Output_Set(PTD, 1<<PTD17);
-            IO_Output_Set(PTC, 1<<PTC9);
-            IO_Output_Set(PTC, 1<<PTC8);
-            IO_Output_Set(PTD, 1<<PTD8);
-            IO_Output_Set(PTD, 1<<PTD9);
-            IO_Output_Set(PTD, 1<<PTD2);
-            IO_Output_Set(PTD, 1<<PTD3);
+            io_SetOutput(rps_PTA, 1<<rps_PTA9);
+            io_SetOutput(rps_PTA, 1<<rps_PTA8);
+            io_SetOutput(rps_PTE, 1<<rps_PTE12);
+            io_SetOutput(rps_PTD, 1<<rps_PTD17);
+            io_SetOutput(rps_PTC, 1<<rps_PTC9);
+            io_SetOutput(rps_PTC, 1<<rps_PTC8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD8);
+            io_SetOutput(rps_PTD, 1<<rps_PTD9);
+            io_SetOutput(rps_PTD, 1<<rps_PTD2);
+            io_SetOutput(rps_PTD, 1<<rps_PTD3);
             break;
             
   default: 
@@ -242,9 +237,8 @@ void Set_Level_Bar(T_UBYTE level){
 }
 
 
-/* Exported functions */
+/* Exrps_PORTEd functions */
 /*============================================================================*/
-
 
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
