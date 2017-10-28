@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: led.c $
- * $Revision: version 1 $
+ * $Revision: version 2 $
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-24 $
+ * $Date: 2017-10-28 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -32,9 +32,11 @@
 /*============================================================================*/
 /*                    REUSE HISTORY - taken over from                         */
 /*============================================================================*/
-/*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
+/*  Author             |        Version     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -51,43 +53,23 @@
 /*============================================================================*/
 
 
-
 /* Variables */
 /*============================================================================*/
 
 
-
 /* Private functions prototypes */
 /*============================================================================*/
-
-
+void leds_InitLeds(void);
+void leds_TurnOnUpLED(void);
+void leds_TurnOffUpLED(void);
+void leds_TurnOnAntipinchLED(void);
+void leds_TurnOffAntipinchLED(void);
+void leds_TurnOnDownLED(void)
+void leds_TurnOffDownLED(void)
 
 /* Inline functions */
 /*============================================================================*/
 
-void Turn_On_UpLED(void){
-  IO_Output_Set(PTE, 1<<PTE4);
-}
-
-void Turn_On_DownLED(void){
-  IO_Output_Set(PTD, 1<<PTD1);
-}
-
-void Turn_On_AntipinchLED(void){
-  IO_Output_Set(PTC, 1<<PTC17);
-}
-
-void Turn_Off_UpLED(void){
-  IO_Output_Clear(PTE, 1<<PTE4);
-}
-
-void Turn_Off_DownLED(void){
-  IO_Output_Clear(PTD, 1<<PTD1);
-}
-
-void Turn_Off_AntipinchLED(void){
-  IO_Output_Clear(PTC, 1<<PTC17);
-}
 
 /* Private functions */
 /*============================================================================*/
@@ -96,20 +78,44 @@ void Turn_Off_AntipinchLED(void){
 /* Exported functions */
 /*============================================================================*/
 
-void Init_Leds(void){
-  Peripheral_Clock_Enable(PCC_PORTC_INDEX);
-  Peripheral_Clock_Enable(PCC_PORTD_INDEX);
-  Peripheral_Clock_Enable(PCC_PORTE_INDEX);
+void leds_InitLeds(void){
+  pcc_EnablePeripheralClock(PCC_PORTC_INDEX);
+  pcc_EnablePeripheralClock(PCC_PORTD_INDEX);
+  pcc_EnablePeripheralClock(PCC_PORTE_INDEX);
 
-  IO_Output_Pin(PTE, 1<<PTE4);          /* Up LED*/
-  Configure_Pin_Mode(PORTE, PTE4, 0x00000100);  /* MUX = GPIO, input filter enabled */
+  io_OutputPin(rps_PTE, 1<<PTE4);          /* Up LED*/
+  port_ConfigurePinMode(rps_PORTE, PTE4, 0x00000100);  /* MUX = GPIO, input filter enabled */
 
-  IO_Output_Pin(PTD, 1<<PTD1);          /* Down LED*/
-  Configure_Pin_Mode(PORTD, PTD1, 0x00000100);  /* MUX = GPIO, input filter enabled */
+  io_OutputPin(rps_PTD, 1<<PTD1);          /* Down LED*/
+  port_ConfigurePinMode(rps_PORTD, PTD1, 0x00000100);  /* MUX = GPIO, input filter enabled */
 
-  IO_Output_Pin(PTC, 1<<PTC17);          /* Antipinch LED*/
-  Configure_Pin_Mode(PORTC, PTC17, 0x00000100);  /* MUX = GPIO, input filter enabled */
+  io_OutputPin(rps_PTC, 1<<PTC17);          /* Antipinch LED*/
+  port_ConfigurePinMode(rps_PORTC, PTC17, 0x00000100);  /* MUX = GPIO, input filter enabled */
 
+}
+
+void leds_TurnOnUpLED(void){
+  IO_Output_Set(rps_PTE, 1<<PTE4);
+}
+
+void leds_TurnOnDownLED(void){
+  IO_Output_Set(rps_PTD, 1<<PTD1);
+}
+
+void leds_TurnOnAntipinchLED(void){
+  IO_Output_Set(rps_PTC, 1<<PTC17);
+}
+
+void leds_TurnOffUpLED(void){
+  IO_Output_Clear(rps_PTE, 1<<PTE4);
+}
+
+void leds_TurnOffDownLED(void){
+  IO_Output_Clear(rps_PTD, 1<<PTD1);
+}
+
+void leds_TurnOffAntipinchLED(void){
+  IO_Output_Clear(rps_PTC, 1<<PTC17);
 }
 
 

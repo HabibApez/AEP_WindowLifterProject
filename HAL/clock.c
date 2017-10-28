@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: clock.c $
- * $Revision: version 1 $
+ * $Revision: version 2 $
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-25 $
+ * $Date: 2017-10-28 $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -32,9 +32,11 @@
 /*============================================================================*/
 /*                    REUSE HISTORY - taken over from                         */
 /*============================================================================*/
-/*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
+/*  Author             |        Version     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -51,37 +53,31 @@
 /*============================================================================*/
 
 
-
 /* Variables */
 /*============================================================================*/
 
-
+void clock_InitClock(void);
 
 /* Private functions prototypes */
 /*============================================================================*/
-
 
 
 /* Inline functions */
 /*============================================================================*/
 
 
-
-
 /* Private functions */
 /*============================================================================*/
-void Init_Clock(void)
-{
-	CONFIG_SOSC_8MHZ();
-	CONFIG_SPLL_160MHZ();
-	CONFIG_RUN_mode();
-}
-
 
 
 /* Exported functions */
 /*============================================================================*/
-
+void clock_InitClock(void)
+{
+	scg_ConfigSOSC8mhz(void);
+	scg_ConfigSPLL160mhz(void);
+	scg_ConfigRunMode(void);
+}
 
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
