@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: port.h $
- * $Revision: version 1$
+ * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-23  $
+ * $Date: 2017-10-28  $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -31,7 +31,9 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -63,16 +65,16 @@ typedef unsigned int T_ULONG;
 
 /** PORT - Register Layout Typedef */
 typedef struct {
-  T_ULONG PCR[PORT_PCR_COUNT];     /**< Pin Control Register n, array      offset: 0x0, array step: 0x4 */
-  T_ULONG GPCLR;                   /**< Global Pin Control Low Register,   offset: 0x80 */
-  T_ULONG GPCHR;                   /**< Global Pin Control High Register,  offset: 0x84 */
-  T_ULONG GICLR;                   /**< Global Interrupt Control Low Register,  offset: 0x88 */
-  T_ULONG GICHR;                   /**< Global Interrupt Control High Register,  offset: 0x8C */
-  T_ULONG ISFR;                    /**< Interrupt Status Flag Register,    offset: 0xA0 */
-  T_UBYTE RESERVED_1[28];
-  T_ULONG DFER;                    /**< Digital Filter Enable Register,    offset: 0xC0 */
-  T_ULONG DFCR;                    /**< Digital Filter Clock Register,     offset: 0xC4 */
-  T_ULONG DFWR;                    /**< Digital Filter Width Register,     offset: 0xC8 */
+  T_ULONG raul_PCR[PORT_PCR_COUNT];     /**< Pin Control Register n, array      offset: 0x0, array step: 0x4 */
+  T_ULONG rul_GPCLR;                   /**< Global Pin Control Low Register,   offset: 0x80 */
+  T_ULONG rul_GPCHR;                   /**< Global Pin Control High Register,  offset: 0x84 */
+  T_ULONG rul_GICLR;                   /**< Global Interrupt Control Low Register,  offset: 0x88 */
+  T_ULONG rul_GICHR;                   /**< Global Interrupt Control High Register,  offset: 0x8C */
+  T_ULONG rul_ISFR;                    /**< Interrupt Status Flag Register,    offset: 0xA0 */
+  T_UBYTE rub_RESERVED_1[28];
+  T_ULONG rul_DFER;                    /**< Digital Filter Enable Register,    offset: 0xC0 */
+  T_ULONG rul_DFCR;                    /**< Digital Filter Clock Register,     offset: 0xC4 */
+  T_ULONG rul_DFWR;                    /**< Digital Filter Width Register,     offset: 0xC8 */
 } S_PORT;
 
 /** Peripheral PORT base pointers*/

@@ -5,9 +5,9 @@
 /*============================================================================*/
 /*!
  * $Source: port.c $
- * $Revision: version 1$
+ * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
- * $Date: 2017-10-23  $
+ * $Date: 2017-10-28  $
  */
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
@@ -31,7 +31,9 @@
 /*============================================================================*/
 /*  DATABASE           |        PROJECT     | FILE VERSION (AND INSTANCE)     */
 /*----------------------------------------------------------------------------*/
-/*                     |                    |                                 */
+/* Habib Apez          |          1         |   Initial version               */
+/* Habib Apez          |          2         |   Naming conventions            */
+/*                     |                    |   and MISRA checked             */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -48,43 +50,33 @@
 /*============================================================================*/
 
 
-
 /* Variables */
 /*============================================================================*/
 /** Pointers to S_PORT */
-S_PORT *PORTA = PORTA_Address;
-S_PORT *PORTB = PORTB_Address;
-S_PORT *PORTC = PORTC_Address;
-S_PORT *PORTD = PORTD_Address;
-S_PORT *PORTE = PORTE_Address;
+S_PORT *rps_PORTA = PORTA_Address;
+S_PORT *rps_PORTB = PORTB_Address;
+S_PORT *rps_PORTC = PORTC_Address;
+S_PORT *rps_PORTD = PORTD_Address;
+S_PORT *rps_PORTE = PORTE_Address;
 
 
 /* Private functions prototypes */
 /*============================================================================*/
-void Configure_Pin_Mode( S_PORT *Port, T_UBYTE Pin, T_ULONG Mode);
+void port_ConfigurePinMode(S_PORT *lps_Port, T_UBYTE lub_Pin, T_ULONG lul_Mode);
 
 
 /* Inline functions */
 /*============================================================================*/
-void Configure_Pin_Mode( S_PORT *Port, T_UBYTE Pin, T_ULONG Mode){
-  Port->PCR[Pin] = Mode;
-}
+
 
 /* Private functions */
 /*============================================================================*/
 
-/** Check if action is allowed by overload protection.
- To avoid overheating of the door locking motors and hardware failure
- the software shall limit the number of activations in a short period.
- This function checks if the limitation algorithm allows or not
- a certain activation of the motors.
- \returns TRUE if the activation is allowed, FALSE if not
-*/
-
 
 /* Exported functions */
 /*============================================================================*/
-
-
+void Configure_Pin_Mode(S_PORT *lps_Port, T_UBYTE lub_Pin, T_ULONG lul_Mode){
+  lps_Port->raul_PCR[lub_Pin] = lul_Mode;
+}
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */
