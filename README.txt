@@ -1,14 +1,26 @@
-# WindowLifter
-Window Lifter @Continental
+﻿# WindowLifter
 
-AEP 2017
 
-Date: 25/10/2017
+Window Lifter at Continental
 
-Author: Habib Alejandro Apez González
-        Estefania López Villagómez
+ AEP 2017
+
+
+
+Lastest Release: 28/10/2017 
+
+
+
+Authors: Habib Alejandro Apez González
+
+       	 Estefania López Villagómez
+
+
 
 Contact: habibapez@hotmail.com
+
          elovillagomez@gmail.com
+
          
+
 Location: Querétaro, México.
