@@ -4,7 +4,7 @@
 /*                        OBJECT SPECIFICATION                                */
 /*============================================================================*/
 /*!
- * $Source: lpti.c $
+ * $Source: lpit.c $
  * $Revision: version 2$
  * $Author: Habib Apez & Estefania López $
  * $Date: 2017-10-28 $
@@ -12,10 +12,7 @@
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
 /** \file
-    short description in one sentence end with dot.
-    detailed
-    multiline
-    description of the file
+    Source file for lpit
 */
 /*============================================================================*/
 /* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2014                                  */

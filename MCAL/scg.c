@@ -12,10 +12,7 @@
 /*============================================================================*/
 /* DESCRIPTION :                                                              */
 /** \file
-    short description in one sentence end with dot.
-    detailed
-    multiline
-    description of the file
+    Source code for scg
 */
 /*============================================================================*/
 /* COPYRIGHT (C) CONTINENTAL AUTOMOTIVE 2014                                  */

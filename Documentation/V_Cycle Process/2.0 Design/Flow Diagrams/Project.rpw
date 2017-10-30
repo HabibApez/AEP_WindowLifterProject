@@ -30,7 +30,7 @@ I-Logix-RPY-Archive version 8.14.0 * 9810313
 				- _id = GUID 8799c1e4-bf0c-47d5-a161-9552742026ae;
 			}
 			- _UpLeft = 0 0 ;
-			- _DownRight = 290 691 ;
+			- _DownRight = 290 692 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 1;
 			- m_bIsActiveView = 0;
@@ -57,8 +57,8 @@ I-Logix-RPY-Archive version 8.14.0 * 9810313
 				- _name = "Main 2";
 				- _id = GUID cf2e2151-1ff0-4ede-9a3f-be904fca64fb;
 			}
-			- _UpLeft = 160 0 ;
-			- _DownRight = 1227 662 ;
+			- _UpLeft = 401 0 ;
+			- _DownRight = 952 778 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 0;
 			- m_bIsActiveView = 1;
@@ -736,7 +736,7 @@ I-Logix-RPY-Archive version 8.14.0 * 9810313
 				- m_nFlags = 2;
 				- m_showCmd = 2;
 				- m_ptMinPositionX = 0;
-				- m_ptMinPositionY = 424;
+				- m_ptMinPositionY = 640;
 				- m_ptMaxPositionX = -8;
 				- m_ptMaxPositionY = -30;
 				- m_nLeft = 125;
@@ -754,7 +754,7 @@ I-Logix-RPY-Archive version 8.14.0 * 9810313
 				- _id = GUID 7f7857fb-5623-49bb-87d4-9fa4fdc46103;
 			}
 			- _UpLeft = 0 0 ;
-			- _DownRight = 467 1614 ;
+			- _DownRight = 627 1614 ;
 			- _instanceName = "";
 			- m_nDiagramIndex = 30;
 			- m_bIsActiveView = 0;
