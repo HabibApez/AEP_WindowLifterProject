@@ -28,7 +28,7 @@ I-Logix-RPY-Archive version 8.14.0 C++ 9810313
 			}
 		}
 	}
-	- _modifiedTimeWeak = 10.30.2017::4:7:52;
+	- _modifiedTimeWeak = 11.2.2017::18:55:4;
 	- _lastID = 1;
 	- _UserColors = { IRPYRawContainer 
 		- size = 16;
@@ -96,7 +96,7 @@ I-Logix-RPY-Archive version 8.14.0 C++ 9810313
 			- _myState = 8192;
 			- _name = "Model1";
 			- _modifiedTimeWeak = 1.2.1990::0:0:0;
-			- _lastModifiedTime = "10.30.2017::3:50:51";
+			- _lastModifiedTime = "11.2.2017::19:50:33";
 			- _graphicChart = { CGIClassChart 
 				- _id = GUID f59efb4f-16e1-474d-9995-7825ed345a8f;
 				- m_type = 0;

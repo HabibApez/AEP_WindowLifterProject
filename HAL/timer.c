@@ -37,6 +37,8 @@
 /* Habib Apez          |          1         |   Initial version               */
 /* Habib Apez          |          2         |   Naming conventions            */
 /*                     |                    |   and MISRA checked             */
+/* Habib Apez          |          3         |   10ms, 40ms and 490ms delay    */
+/* Habib Apez          |                    |   functions added               */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -60,9 +62,11 @@
 /* Private functions prototypes */
 /*============================================================================*/
 void timer_InitTimer(void);
+void timer_Wait10ms(void);
+void timer_Wait40ms(void);
 void timer_Wait50ms(void);
 void timer_Wait400ms(void);
-void timer_Wait450ms(void);
+void timer_Wait490ms(void);
 void timer_Wait5s(void);
 
 /* Inline functions */
@@ -81,6 +85,22 @@ void timer_InitTimer(void){
   lpit_EnableLPITO();
 }
 
+void timer_Wait10ms(void){
+  lpit_ChargeLPITOCh0(200000);
+  lpit_EnableLPIT0Ch0();
+  while(0 == lpit_ChecklFlagLPIT0Ch0());
+  lpit_ClearFlagLPIT0Ch0();
+  lpit_DisableLPIT0Ch0();
+}
+
+void timer_Wait40ms(void){
+  lpit_ChargeLPITOCh0(800000);
+  lpit_EnableLPIT0Ch0();
+  while(0 == lpit_ChecklFlagLPIT0Ch0());
+  lpit_ClearFlagLPIT0Ch0();
+  lpit_DisableLPIT0Ch0();
+}
+
 void timer_Wait50ms(void){
   lpit_ChargeLPITOCh0(2000000);
   lpit_EnableLPIT0Ch0();
@@ -97,9 +117,10 @@ void timer_Wait400ms(void){
   lpit_DisableLPIT0Ch0();
 }
 
-void timer_Wait450ms(void){
+void timer_Wait490ms(void){
   timer_Wait400ms();
   timer_Wait50ms();
+  timer_Wait40ms();
 }
 
 void timer_Wait5s(void){

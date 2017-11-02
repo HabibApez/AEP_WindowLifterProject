@@ -38,6 +38,8 @@
 /* Habib Apez          |          1         |   Initial version               */
 /* Estefania López     |          2         |   Naming conventions            */
 /*                     |                    |   and MISRA checked             */
+/* Habib Apez          |          3         |   Turn On/Off segment algorithm */
+/*                     |                    |   changed                       */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -61,15 +63,146 @@
 /* Private functions prototypes */
 /*============================================================================*/
 void segmentbar_InitBar(void);
-void segmentbar_SetLevelBar(T_UBYTE lub_level);
+void segmentbar_SetLevelBar(T_UBYTE lub_level, T_UBYTE lub_UpFlagInd,T_UBYTE lub_DownFlagInd);
+
+void segmentbar_SetLevel10(T_UBYTE lub_UpFlagInd);
+void segmentbar_SetLevel9(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd);
+void segmentbar_SetLevel8(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd);
+void segmentbar_SetLevel7(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd);
+void segmentbar_SetLevel6(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd);
+void segmentbar_SetLevel5(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd);
+void segmentbar_SetLevel4(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd);
+void segmentbar_SetLevel3(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd);
+void segmentbar_SetLevel2(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd);
+void segmentbar_SetLevel1(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd);
+void segmentbar_SetLevel0(T_UBYTE lub_DownFlagInd);
+
+
 
 /* Inline functions */
 /*============================================================================*/
 
 
-
-
 /* Private functions */
+/*============================================================================*/
+
+void segmentbar_SetLevel10(T_UBYTE lub_UpFlagInd){
+   if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTA, 1<<PTA9);
+  }
+  else{
+  } 
+}
+
+void segmentbar_SetLevel9(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd){
+  if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTA, 1<<PTA8);
+  }
+  else{
+    if(lub_DownFlagInd == 1){
+      io_ClearOutput(rps_PTA, 1<<PTA9);
+    }
+  } 
+}
+
+void segmentbar_SetLevel8(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd){
+  if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTE, 1<<PTE12);
+  }
+  else{
+    if(lub_DownFlagInd == 1){
+      io_ClearOutput(rps_PTA, 1<<PTA8);
+    }
+  } 
+}
+
+void segmentbar_SetLevel7(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd){
+  if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTD, 1<<PTD17);
+  }
+  else{
+    if(lub_DownFlagInd == 1){
+      io_ClearOutput(rps_PTE, 1<<PTE12);
+    } 
+  }
+}
+
+void segmentbar_SetLevel6(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd){
+  if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTC, 1<<PTC9);
+  }
+  else{
+    if(lub_DownFlagInd == 1){
+      io_ClearOutput(rps_PTD, 1<<PTD17);
+    } 
+  }
+}
+
+void segmentbar_SetLevel5(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd){
+  if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTC, 1<<PTC8);
+  }
+  else{
+    if(lub_DownFlagInd == 1){
+      io_ClearOutput(rps_PTC, 1<<PTC9);
+    }
+  }
+}
+
+void segmentbar_SetLevel4(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd){
+  if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTD, 1<<PTD8);
+  }
+  else{
+    if(lub_DownFlagInd == 1){
+      io_ClearOutput(rps_PTC, 1<<PTC8);
+    }
+  }
+}
+
+void segmentbar_SetLevel3(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd){
+  if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTD, 1<<PTD9);
+  }
+  else{
+    if(lub_DownFlagInd == 1){
+      io_ClearOutput(rps_PTD, 1<<PTD8);
+    }
+  }
+}
+
+void segmentbar_SetLevel2(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd){
+  if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTD, 1<<PTD2);
+  }
+  else{
+    if(lub_DownFlagInd == 1){
+      io_ClearOutput(rps_PTD, 1<<PTD9);
+    }
+  }
+}
+
+void segmentbar_SetLevel1(T_UBYTE lub_UpFlagInd, T_UBYTE lub_DownFlagInd){
+  if(lub_UpFlagInd == 1){
+    io_SetOutput(rps_PTD, 1<<PTD3);
+  }
+  else{
+    if(lub_DownFlagInd == 1){
+      io_ClearOutput(rps_PTD, 1<<PTD2);
+    }
+  }
+}
+
+void segmentbar_SetLevel0(T_UBYTE lub_DownFlagInd){
+  if(lub_DownFlagInd == 1){
+    io_ClearOutput(rps_PTD, 1<<PTD3);
+  }
+  else {
+    }
+}
+
+
+/* Exrps_PORTEd functions */
 /*============================================================================*/
 
 void segmentbar_InitBar(void){
@@ -95,150 +228,47 @@ void segmentbar_InitBar(void){
   port_ConfigurePinMode(rps_PORTE, PTE12, 0x00000100);
 }
 
-void segmentbar_SetLevelBar(T_UBYTE lub_level){
+void segmentbar_SetLevelBar(T_UBYTE lub_level, T_UBYTE lub_UpFlagInd,T_UBYTE lub_DownFlagInd){
   switch(lub_level){
   
   case 0: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_ClearOutput(rps_PTA, 1<<PTA8);
-            io_ClearOutput(rps_PTE, 1<<PTE12);
-            io_ClearOutput(rps_PTD, 1<<PTD17);
-            io_ClearOutput(rps_PTC, 1<<PTC9);
-            io_ClearOutput(rps_PTC, 1<<PTC8);
-            io_ClearOutput(rps_PTD, 1<<PTD8);
-            io_ClearOutput(rps_PTD, 1<<PTD9);
-            io_ClearOutput(rps_PTD, 1<<PTD2);
-            io_ClearOutput(rps_PTD, 1<<PTD3);
+            segmentbar_SetLevel0(lub_DownFlagInd);
             break;
   case 1: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_ClearOutput(rps_PTA, 1<<PTA8);
-            io_ClearOutput(rps_PTE, 1<<PTE12);
-            io_ClearOutput(rps_PTD, 1<<PTD17);
-            io_ClearOutput(rps_PTC, 1<<PTC9);
-            io_ClearOutput(rps_PTC, 1<<PTC8);
-            io_ClearOutput(rps_PTD, 1<<PTD8);
-            io_ClearOutput(rps_PTD, 1<<PTD9);
-            io_ClearOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
+            segmentbar_SetLevel1(lub_UpFlagInd, lub_DownFlagInd);
             break;
   case 2: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_ClearOutput(rps_PTA, 1<<PTA8);
-            io_ClearOutput(rps_PTE, 1<<PTE12);
-            io_ClearOutput(rps_PTD, 1<<PTD17);
-            io_ClearOutput(rps_PTC, 1<<PTC9);
-            io_ClearOutput(rps_PTC, 1<<PTC8);
-            io_ClearOutput(rps_PTD, 1<<PTD8);
-            io_ClearOutput(rps_PTD, 1<<PTD9);
-            io_SetOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
-            break;
+            segmentbar_SetLevel2(lub_UpFlagInd, lub_DownFlagInd);
+	    break;
   case 3: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_ClearOutput(rps_PTA, 1<<PTA8);
-            io_ClearOutput(rps_PTE, 1<<PTE12);
-            io_ClearOutput(rps_PTD, 1<<PTD17);
-            io_ClearOutput(rps_PTC, 1<<PTC9);
-            io_ClearOutput(rps_PTC, 1<<PTC8);
-            io_ClearOutput(rps_PTD, 1<<PTD8);
-            io_SetOutput(rps_PTD, 1<<PTD9);
-            io_SetOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
-            break;
+            segmentbar_SetLevel3(lub_UpFlagInd, lub_DownFlagInd);
+	    break;
   case 4: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_ClearOutput(rps_PTA, 1<<PTA8);
-            io_ClearOutput(rps_PTE, 1<<PTE12);
-            io_ClearOutput(rps_PTD, 1<<PTD17);
-            io_ClearOutput(rps_PTC, 1<<PTC9);
-            io_ClearOutput(rps_PTC, 1<<PTC8);
-            io_SetOutput(rps_PTD, 1<<PTD8);
-            io_SetOutput(rps_PTD, 1<<PTD9);
-            io_SetOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
-            break;
+            segmentbar_SetLevel4(lub_UpFlagInd, lub_DownFlagInd);
+	    break;
   case 5: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_ClearOutput(rps_PTA, 1<<PTA8);
-            io_ClearOutput(rps_PTE, 1<<PTE12);
-            io_ClearOutput(rps_PTD, 1<<PTD17);
-            io_ClearOutput(rps_PTC, 1<<PTC9);
-            io_SetOutput(rps_PTC, 1<<PTC8);
-            io_SetOutput(rps_PTD, 1<<PTD8);
-            io_SetOutput(rps_PTD, 1<<PTD9);
-            io_SetOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
-            break;
+            segmentbar_SetLevel5(lub_UpFlagInd, lub_DownFlagInd);
+	    break;
   case 6: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_ClearOutput(rps_PTA, 1<<PTA8);
-            io_ClearOutput(rps_PTE, 1<<PTE12);
-            io_ClearOutput(rps_PTD, 1<<PTD17);
-            io_SetOutput(rps_PTC, 1<<PTC9);
-            io_SetOutput(rps_PTC, 1<<PTC8);
-            io_SetOutput(rps_PTD, 1<<PTD8);
-            io_SetOutput(rps_PTD, 1<<PTD9);
-            io_SetOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
+            segmentbar_SetLevel6(lub_UpFlagInd, lub_DownFlagInd);
             break;
   case 7: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_ClearOutput(rps_PTA, 1<<PTA8);
-            io_ClearOutput(rps_PTE, 1<<PTE12);
-            io_SetOutput(rps_PTD, 1<<PTD17);
-            io_SetOutput(rps_PTC, 1<<PTC9);
-            io_SetOutput(rps_PTC, 1<<PTC8);
-            io_SetOutput(rps_PTD, 1<<PTD8);
-            io_SetOutput(rps_PTD, 1<<PTD9);
-            io_SetOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
-            break;
+            segmentbar_SetLevel7(lub_UpFlagInd, lub_DownFlagInd);
+	    break;
   case 8: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_ClearOutput(rps_PTA, 1<<PTA8);
-            io_SetOutput(rps_PTE, 1<<PTE12);
-            io_SetOutput(rps_PTD, 1<<PTD17);
-            io_SetOutput(rps_PTC, 1<<PTC9);
-            io_SetOutput(rps_PTC, 1<<PTC8);
-            io_SetOutput(rps_PTD, 1<<PTD8);
-            io_SetOutput(rps_PTD, 1<<PTD9);
-            io_SetOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
-            break;
+            segmentbar_SetLevel8(lub_UpFlagInd, lub_DownFlagInd);
+	    break;
   case 9: 
-            io_ClearOutput(rps_PTA, 1<<PTA9);
-            io_SetOutput(rps_PTA, 1<<PTA8);
-            io_SetOutput(rps_PTE, 1<<PTE12);
-            io_SetOutput(rps_PTD, 1<<PTD17);
-            io_SetOutput(rps_PTC, 1<<PTC9);
-            io_SetOutput(rps_PTC, 1<<PTC8);
-            io_SetOutput(rps_PTD, 1<<PTD8);
-            io_SetOutput(rps_PTD, 1<<PTD9);
-            io_SetOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
-            break;
+            segmentbar_SetLevel9(lub_UpFlagInd, lub_DownFlagInd);
+	    break;
   case 10: 
-            io_SetOutput(rps_PTA, 1<<PTA9);
-            io_SetOutput(rps_PTA, 1<<PTA8);
-            io_SetOutput(rps_PTE, 1<<PTE12);
-            io_SetOutput(rps_PTD, 1<<PTD17);
-            io_SetOutput(rps_PTC, 1<<PTC9);
-            io_SetOutput(rps_PTC, 1<<PTC8);
-            io_SetOutput(rps_PTD, 1<<PTD8);
-            io_SetOutput(rps_PTD, 1<<PTD9);
-            io_SetOutput(rps_PTD, 1<<PTD2);
-            io_SetOutput(rps_PTD, 1<<PTD3);
-            break;
+            segmentbar_SetLevel10(lub_UpFlagInd);
+	    break;
             
   default: 
             break;
   }
 }
-
-
-/* Exrps_PORTEd functions */
-/*============================================================================*/
 
 
  /* Notice: the file ends with a blank new line to avoid compiler warnings */

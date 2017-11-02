@@ -53,7 +53,7 @@
     
 /* Variables */
 /*============================================================================*/
-T_UBYTE lub_UpFlag, lub_DownFlag, lub_Level = 0;
+T_UBYTE lub_UpFlag, lub_DownFlag, lub_AntipinchFlag, lub_Level = 0;
 
 /* Private functions prototypes */
 /*============================================================================*/
@@ -78,7 +78,7 @@ void windowlifter_UpNormal(void){
       leds_TurnOnUpLED();
       lub_Level++;
       timer_Wait400ms();
-      segmentbar_SetLevelBar(lub_Level);
+      segmentbar_SetLevelBar(lub_Level, lub_UpFlag, lub_DownFlag);
       leds_TurnOffUpLED();
     }
   }
@@ -90,7 +90,7 @@ void windowlifter_DownNormal(void){
     leds_TurnOnDownLED();
     lub_Level--;
     timer_Wait400ms();
-    segmentbar_SetLevelBar(lub_Level);
+    segmentbar_SetLevelBar(lub_Level, lub_UpFlag, lub_DownFlag);
     leds_TurnOffDownLED();
   }
 }
@@ -108,7 +108,7 @@ void windowlifter_OneTouchUp(void){
 void windowlifter_OneTouchDown(void){
 
   while(lub_Level>BOTTON & lub_DownFlag){ 
-    if(button_DebounceButtonUp())
+    if(button_DebounceButtonUp() && (lub_AntipinchFlag == 0))
       lub_DownFlag = 0;
     if(lub_DownFlag)
     windowlifter_DownNormal();       
@@ -116,6 +116,7 @@ void windowlifter_OneTouchDown(void){
 }
 
 void windowlifter_Antipinch(void){
+  lub_AntipinchFlag = 1;
   leds_TurnOffUpLED();
   lub_UpFlag = 0;
   lub_DownFlag = 1;
@@ -123,6 +124,7 @@ void windowlifter_Antipinch(void){
   windowlifter_OneTouchDown();
   timer_Wait5s();
   leds_TurnOffAntipinchLED();  
+  lub_AntipinchFlag = 0;
 }
 
 /** Check if action is allowed by overload protection.
@@ -147,9 +149,10 @@ void main(void)
       start:
         if(button_DebounceButtonUp()){
           lub_UpFlag = 1;
-          timer_Wait450ms();
+          timer_Wait490ms();
           if(button_CheckButtonUp()){
             Up_normal:
+              lub_UpFlag = 1;
               windowlifter_UpNormal();
               if(button_CheckButtonUp()){
                 lub_UpFlag = 0;
@@ -171,9 +174,10 @@ void main(void)
         else {
           if(button_DebounceButtonDown()){
             lub_DownFlag = 1;
-            timer_Wait450ms();
+            timer_Wait490ms();
             if(button_CheckButtonDown()){
               Down_normal:
+                lub_DownFlag = 1;
                 windowlifter_DownNormal();
                 if(button_CheckButtonDown()){
                   lub_DownFlag = 0;
