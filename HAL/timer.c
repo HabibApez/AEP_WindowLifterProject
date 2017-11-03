@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
  * $Source: timer.c $
- * $Revision: version 2$
+ * $Revision: version 3$
  * $Author: Habib Apez & Estefania López $
  * $Date: 2017-10-28 $
  */

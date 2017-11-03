@@ -34,6 +34,8 @@
 /* Habib Apez          |          1         |   Initial version               */
 /* Habib Apez          |          2         |   Naming conventions            */
 /*                     |                    |   and MISRA checked             */
+/* Habib Apez          |          2         |   New function to mange the     */
+/*                     |                    |   10 segment led bar included   */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
