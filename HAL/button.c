@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
  * $Source: button.c $
- * $Revision: version 2 $
+ * $Revision: version 3 $
  * $Author: Habib Apez & Estefania López $
  * $Date: 2017-10-28  $
  */
@@ -39,6 +39,7 @@
 /* Habib Apez          |          1         |   Initial version               */
 /* Habib Apez          |          2         |   Naming conventions            */
 /*                     |                    |   and MISRA checked             */
+/* Habib Apez          |          3         |   Debounce adjusted at 10ms     */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -106,7 +107,7 @@ T_UBYTE button_CheckButtonAntipinch(void){
 
 T_UBYTE button_DebounceButtonUp(void){  
   if(button_CheckButtonUp()){
-    timer_Wait50ms();
+    timer_Wait10ms();
     if(button_CheckButtonUp())
       return 1;
     else
@@ -118,7 +119,7 @@ T_UBYTE button_DebounceButtonUp(void){
 
 T_UBYTE button_DebounceButtonDown(void){
    if(button_CheckButtonDown()){
-    timer_Wait50ms();
+    timer_Wait10ms();
     if(button_CheckButtonDown())
       return 1;
     else
@@ -131,7 +132,7 @@ T_UBYTE button_DebounceButtonDown(void){
 
 T_UBYTE button_DebounceButtonAntipinch(void){
    if(button_CheckButtonAntipinch()){
-    timer_Wait50ms();
+    timer_Wait10ms();
     if(button_CheckButtonAntipinch())
       return 1;
     else

@@ -7,7 +7,11 @@ Window Lifter at Continental
 
 
 
+<<<<<<< HEAD
 Lastest Release: 30/10/2017 
+=======
+Lastest Release: 03/11/2017 
+>>>>>>> devs_branch
 
 
 
