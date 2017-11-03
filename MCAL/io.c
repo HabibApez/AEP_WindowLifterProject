@@ -5,7 +5,7 @@
 /*============================================================================*/
 /*!
  * $Source: io.c $
- * $Revision: version 2$
+ * $Revision: version 3$
  * $Author: Habib Apez & Estefania López $
  * $Date: 2017-10-28 $
  */
@@ -34,6 +34,7 @@
 /* Habib Apez          |          1         |   Initial version               */
 /* Habib Apez          |          2         |   Naming conventions            */
 /*                     |                    |   and MISRA checked             */
+/* Habib Apez          |          3         |   Minior changes                */
 /*============================================================================*/
 /*                               OBJECT HISTORY                               */
 /*============================================================================*/
@@ -66,8 +67,8 @@ S_GPIO *rps_PTE = PTE_Address;
 void io_InputPin(S_GPIO *lps_Port, T_ULONG lul_Pin);
 void io_OutputPin(S_GPIO *lps_Port, T_ULONG lul_Pin);
 void io_TogglePin(S_GPIO *lps_Port, T_ULONG lul_Pin);
-void io_OutputSet(S_GPIO *lps_Port, T_ULONG lul_Pin);
-void io_OutputClear(S_GPIO *lps_Port, T_ULONG lul_Pin);
+void io_SetOutput(S_GPIO *lps_Port, T_ULONG lul_Pin);
+void io_ClearOutput(S_GPIO *lps_Port, T_ULONG lul_Pin);
 T_UBYTE io_GetPinData(S_GPIO *lps_Port, T_UBYTE lul_Pin);
 
 

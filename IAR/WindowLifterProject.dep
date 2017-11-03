@@ -5,8 +5,30 @@
     <configuration>
         <name>Debug</name>
         <outputs>
+            <file>$PROJ_DIR$\..\MCAL\pcc.c</file>
+            <file>$PROJ_DIR$\..\HAL\clock.c</file>
+            <file>$PROJ_DIR$\..\HAL\segmentbar.h</file>
+            <file>$PROJ_DIR$\Debug\Obj\WindowLifterProject.pbd</file>
+            <file>$PROJ_DIR$\..\HAL\segmentbar.c</file>
+            <file>$PROJ_DIR$\Debug\Obj\main.o</file>
+            <file>$PROJ_DIR$\..\MCAL\lpit.c</file>
+            <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
+            <file>$PROJ_DIR$\..\MCAL\lpit.h</file>
+            <file>$PROJ_DIR$\Debug\Exe\WindowLifterProject.out</file>
+            <file>$PROJ_DIR$\main.c</file>
+            <file>$PROJ_DIR$\..\APP\windowlifter.h</file>
+            <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
+            <file>$PROJ_DIR$\Debug\List\WindowLifterProject.map</file>
+            <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
+            <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+            <file>$PROJ_DIR$\..\HAL\leds.c</file>
+            <file>$PROJ_DIR$\..\MCAL\io.c</file>
             <file>$PROJ_DIR$\Debug\Obj\windowlifter.__cstat.et</file>
-            <file>$TOOLKIT_DIR$\lib\m7M_tls.a</file>
+            <file>$PROJ_DIR$\..\MCAL\io.h</file>
+            <file>$PROJ_DIR$\..\MCAL\scg.c</file>
+            <file>$PROJ_DIR$\..\HAL\button.c</file>
+            <file>$PROJ_DIR$\..\MCAL\port.h</file>
+            <file>$PROJ_DIR$\..\HAL\clock.h</file>
             <file>$TOOLKIT_DIR$\config\linker\NXP\S32K144.icf</file>
             <file>$PROJ_DIR$\..\HAL\timer.c</file>
             <file>$PROJ_DIR$\..\MCAL\scg.h</file>
@@ -14,43 +36,20 @@
             <file>$PROJ_DIR$\..\MCAL\pcc.h</file>
             <file>$PROJ_DIR$\..\HAL\button.h</file>
             <file>$PROJ_DIR$\Debug\Obj\windowlifter.pbi</file>
+            <file>$TOOLKIT_DIR$\lib\m7M_tls.a</file>
             <file>$PROJ_DIR$\..\HAL\timer.h</file>
             <file>$PROJ_DIR$\..\MCAL\wdt.h</file>
-            <file>$PROJ_DIR$\..\MCAL\wdt.c</file>
-            <file>$PROJ_DIR$\..\MCAL\port.h</file>
-            <file>$PROJ_DIR$\..\MCAL\scg.c</file>
-            <file>$PROJ_DIR$\..\MCAL\io.h</file>
-            <file>$PROJ_DIR$\..\MCAL\port.c</file>
             <file>$PROJ_DIR$\Debug\Obj\windowlifter.o</file>
-            <file>$PROJ_DIR$\..\MCAL\io.c</file>
-            <file>$PROJ_DIR$\..\HAL\button.c</file>
-            <file>$PROJ_DIR$\..\HAL\leds.c</file>
-            <file>$PROJ_DIR$\..\HAL\clock.h</file>
-            <file>$PROJ_DIR$\..\HAL\clock.c</file>
-            <file>$PROJ_DIR$\..\MCAL\pcc.c</file>
-            <file>$TOOLKIT_DIR$\lib\dl7M_tln.a</file>
-            <file>$PROJ_DIR$\..\MCAL\lpit.h</file>
-            <file>$PROJ_DIR$\Debug\Exe\WindowLifterProject.out</file>
-            <file>$PROJ_DIR$\..\HAL\segmentbar.h</file>
             <file>$PROJ_DIR$\..\APP\windowlifter.c</file>
-            <file>C:\Documents_Continental\AEP_2017\Project 1\LED_BAR_LP\MCAL\pcc.h</file>
-            <file>$PROJ_DIR$\..\MCAL\lpit.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\main.o</file>
-            <file>$PROJ_DIR$\..\HAL\segmentbar.c</file>
-            <file>$PROJ_DIR$\Debug\Obj\WindowLifterProject.pbd</file>
-            <file>$PROJ_DIR$\main.c</file>
-            <file>$PROJ_DIR$\..\APP\windowlifter.h</file>
-            <file>$TOOLKIT_DIR$\lib\rt7M_tl.a</file>
-            <file>$PROJ_DIR$\Debug\List\WindowLifterProject.map</file>
-            <file>$PROJ_DIR$\Debug\Obj\main.pbi</file>
-            <file>$TOOLKIT_DIR$\lib\shb_l.a</file>
+            <file>$PROJ_DIR$\..\MCAL\port.c</file>
+            <file>$PROJ_DIR$\..\MCAL\wdt.c</file>
         </outputs>
         <file>
             <name>[ROOT_NODE]</name>
             <outputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 25 36</file>
+                    <file> 9 13</file>
                 </tool>
             </outputs>
         </file>
@@ -59,40 +58,13 @@
             <outputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 36</file>
+                    <file> 13</file>
                 </tool>
             </outputs>
             <inputs>
                 <tool>
                     <name>ILINK</name>
-                    <file> 2 16 38 35 1 23</file>
-                </tool>
-            </inputs>
-        </file>
-        <file>
-            <name>$PROJ_DIR$\..\APP\windowlifter.c</name>
-            <outputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 8</file>
-                </tool>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 16</file>
-                </tool>
-                <tool>
-                    <name>__cstat</name>
-                    <file> 0</file>
-                </tool>
-            </outputs>
-            <inputs>
-                <tool>
-                    <name>BICOMP</name>
-                    <file> 31 13 3 20 10 9 29 6 15 14 12 5 21 18 19 4 11 24 22 7 17 34 26</file>
-                </tool>
-                <tool>
-                    <name>ICCARM</name>
-                    <file> 34 21 20 13 4 11 10 3 9 29 24 22 6 18 7 17 14 15 12 31 26 19 5</file>
+                    <file> 24 34 15 12 31 7</file>
                 </tool>
             </inputs>
         </file>
@@ -101,13 +73,40 @@
             <outputs>
                 <tool>
                     <name>BICOMP</name>
-                    <file> 37</file>
+                    <file> 14</file>
                 </tool>
                 <tool>
                     <name>ICCARM</name>
-                    <file> 30</file>
+                    <file> 5</file>
                 </tool>
             </outputs>
+        </file>
+        <file>
+            <name>$PROJ_DIR$\..\APP\windowlifter.c</name>
+            <outputs>
+                <tool>
+                    <name>__cstat</name>
+                    <file> 18</file>
+                </tool>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 30</file>
+                </tool>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 34</file>
+                </tool>
+            </outputs>
+            <inputs>
+                <tool>
+                    <name>BICOMP</name>
+                    <file> 25 33 23 32 2 4 20 6 28 36 19 22 27 1 21 16 26 37 8 0 29 17 11</file>
+                </tool>
+                <tool>
+                    <name>ICCARM</name>
+                    <file> 11 1 23 20 26 37 33 25 32 6 8 0 28 21 29 17 19 36 22 4 2 16 27</file>
+                </tool>
+            </inputs>
         </file>
     </configuration>
     <configuration>
@@ -116,6 +115,9 @@
         <forcedrebuild>
             <name>[MULTI_TOOL]</name>
             <tool>ILINK</tool>
+        </forcedrebuild>
+        <forcedrebuild>
+            <name>[REBUILD_ALL]</name>
         </forcedrebuild>
     </configuration>
 </project>
