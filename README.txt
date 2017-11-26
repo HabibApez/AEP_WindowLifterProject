@@ -3,16 +3,9 @@
 
 Window Lifter at Continental
 
- AEP 2017
+AEP 2017
 
-
-
-<<<<<<< HEAD
-Lastest Release: 30/10/2017 
-=======
-Lastest Release: 03/11/2017 
->>>>>>> devs_branch
-
+Lastest Release: 2017/11/25
 
 
 Authors: Habib Alejandro Apez González
@@ -24,7 +17,6 @@ Authors: Habib Alejandro Apez González
 Contact: habibapez@hotmail.com
 
          elovillagomez@gmail.com
-
-         
+      
 
 Location: Querétaro, México.
